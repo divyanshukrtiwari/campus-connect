@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_class/ui/auth/walkthrough_screen.dart';
+import 'package:my_class/ui/auth/auth_screen.dart';
+import 'package:my_class/ui/auth/auth_set2.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +15,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: WalkthroughScreen(),
+      home: AuthScreen(),
+      routes: {
+        AuthSet2.routeName: (ctx) => AuthSet2(),
+      },
     );
   }
 }
-
