@@ -106,6 +106,7 @@ class _AuthSet1State extends State<AuthSet1> {
                       if (value.isEmpty) {
                         return 'Invalid roll number!';
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       _authDataSet1['rollno'] = value;
@@ -125,12 +126,13 @@ class _AuthSet1State extends State<AuthSet1> {
               FocusScope.of(context).unfocus();
 
               if (isValid) {
+                _formKey.currentState.save();
                 Navigator.of(context).pushNamed(AuthSet2.routeName, arguments: [
-                _authDataSet1['name'],
-                _authDataSet1['semester'],
-                _authDataSet1['section'],
-                _authDataSet1['rollno'],
-              ]);
+                  _authDataSet1['name'],
+                  _authDataSet1['semester'],
+                  _authDataSet1['section'],
+                  _authDataSet1['rollno'],
+                ]);
               }
             },
             shape: RoundedRectangleBorder(

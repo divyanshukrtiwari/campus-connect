@@ -34,6 +34,7 @@ class _AuthSet2State extends State<AuthSet2> {
                       if (value.isEmpty) {
                         return 'Please enter a valid ';
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       //_authData['username'] = value;
@@ -58,6 +59,7 @@ class _AuthSet2State extends State<AuthSet2> {
                       if (value.isEmpty) {
                         return 'Please enter a valid password';
                       }
+                      return null;
                     },
                     onSaved: (value) {
                       //_authData['username'] = value;
