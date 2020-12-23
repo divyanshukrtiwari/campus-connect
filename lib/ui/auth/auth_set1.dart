@@ -141,6 +141,7 @@ class _AuthSet1State extends State<AuthSet1> {
               ),
             ),
             child: Text("Next"),
+            color: Colors.pink[100],
           )
         ],
       ),

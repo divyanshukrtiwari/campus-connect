@@ -33,7 +33,7 @@ class _AuthScreenState extends State<AuthScreen> {
               child: Column(
                 children: [
                   Image.asset(
-                    "assets/images/image2.png",
+                    "assets/images/AddUser.png",
                     height: height * .4,
                   ),
                   Padding(
