@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'auth_screen_set2.dart';
+import 'package:my_class/helpers/student.dart';
 
 class AuthFormSet1 extends StatefulWidget {
   @override
@@ -8,18 +9,12 @@ class AuthFormSet1 extends StatefulWidget {
 }
 
 class _AuthSet1State extends State<AuthFormSet1> {
-  final _formKey = GlobalKey<FormState>();
+  final _form1Key = GlobalKey<FormState>();
 
-  Map<String, String> _authDataSet1 = {
-    'name': '',
-    'sem': '',
-    'sec': '',
-    'rollno': '',
-  };
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: _form1Key,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -40,7 +35,7 @@ class _AuthSet1State extends State<AuthFormSet1> {
                 return null;
               },
               onSaved: (value) {
-                _authDataSet1['name'] = value;
+                student['name'] = value;
               },
             ),
           ),
@@ -64,7 +59,7 @@ class _AuthSet1State extends State<AuthFormSet1> {
                       return null;
                     },
                     onSaved: (value) {
-                      _authDataSet1['semester'] = value;
+                      student['semester'] = value;
                     },
                   ),
                 ),
@@ -86,7 +81,7 @@ class _AuthSet1State extends State<AuthFormSet1> {
                       return null;
                     },
                     onSaved: (value) {
-                      _authDataSet1['section'] = value;
+                      student['section'] = value;
                     },
                   ),
                 ),
@@ -109,7 +104,7 @@ class _AuthSet1State extends State<AuthFormSet1> {
                       return null;
                     },
                     onSaved: (value) {
-                      _authDataSet1['rollno'] = value;
+                      student['rollno'] = value;
                     },
                   ),
                 ),
@@ -121,19 +116,15 @@ class _AuthSet1State extends State<AuthFormSet1> {
           ),
           RaisedButton(
             onPressed: () {
-              final isValid = _formKey.currentState.validate();
+              final isValid = _form1Key.currentState.validate();
 
               FocusScope.of(context).unfocus();
 
               if (isValid) {
-                _formKey.currentState.save();
-                Navigator.of(context)
-                    .pushNamed(AuthScreenSet2.routeName, arguments: [
-                  _authDataSet1['name'],
-                  _authDataSet1['semester'],
-                  _authDataSet1['section'],
-                  _authDataSet1['rollno'],
-                ]);
+                _form1Key.currentState.save();
+                Navigator.of(context).pushNamed(
+                  AuthScreenSet2.routeName,
+                );
               }
             },
             shape: RoundedRectangleBorder(

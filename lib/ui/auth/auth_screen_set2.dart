@@ -30,10 +30,11 @@ class _AuthSet2State extends State<AuthScreenSet2> {
             alignment: Alignment.center,
             child: SingleChildScrollView(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(
                     "assets/images/Login-amico.png",
-                    height: height * .4,
+                    height: height * .45,
                   ),
                   AuthFormSet2(),
                 ],

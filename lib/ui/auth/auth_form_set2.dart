@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import 'package:my_class/helpers/student.dart';
 
 class AuthFormSet2 extends StatefulWidget {
   @override
@@ -6,10 +11,57 @@ class AuthFormSet2 extends StatefulWidget {
 }
 
 class _AuthFormSet2State extends State<AuthFormSet2> {
+  final _form2Key = GlobalKey<FormState>();
+  final _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
+    void _onSubmit() async {
+      print("on submit called");
+      AuthResult authResult;
+
+      try {
+        authResult = await _auth.createUserWithEmailAndPassword(
+          email: student['email'],
+          password: student['password'],
+        );
+
+        await Firestore.instance
+            .collection('students')
+            .document(authResult.user.uid)
+            .setData(
+          {
+            'name': student['name'],
+            'semester': student['semester'],
+            'section': student['section'],
+            'rollno': student['rollno'],
+            'email': student['email'],
+            'password': student['password'],
+          },
+        );
+      } on PlatformException catch (error) {
+        String message = 'Please check your credentials and try again';
+
+        if (error.message != null) {
+          message = error.message;
+        }
+
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(message),
+            backgroundColor: Theme.of(context).errorColor,
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 3),
+          ),
+        );
+      } catch (error) {
+        print(error);
+      }
+    }
+
     return Container(
       child: Form(
+        key: _form2Key,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -33,7 +85,7 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
                   return null;
                 },
                 onSaved: (value) {
-                  //_authData['username'] = value;
+                  student['email'] = value;
                 },
               ),
             ),
@@ -47,6 +99,7 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
                   //   borderRadius: BorderRadius.circular(30),
                   // ),
                 ),
+                obscureText: true,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
                 style: TextStyle(color: Theme.of(context).primaryColor),
@@ -57,7 +110,7 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
                   return null;
                 },
                 onSaved: (value) {
-                  //_authData['username'] = value;
+                  student['password'] = value;
                 },
               ),
             ),
@@ -65,7 +118,16 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
               height: 20,
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                final isValid = _form2Key.currentState.validate();
+
+                FocusScope.of(context).unfocus();
+
+                if (isValid) {
+                  _form2Key.currentState.save();
+                }
+                _onSubmit();
+              },
               color: Colors.pink[100],
               child: Text("Submit"),
               shape: RoundedRectangleBorder(
