@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import 'auth_set2.dart';
+import 'auth_screen_set2.dart';
 
-class AuthSet1 extends StatefulWidget {
+class AuthFormSet1 extends StatefulWidget {
   @override
   _AuthSet1State createState() => _AuthSet1State();
 }
 
-class _AuthSet1State extends State<AuthSet1> {
+class _AuthSet1State extends State<AuthFormSet1> {
   final _formKey = GlobalKey<FormState>();
 
   Map<String, String> _authDataSet1 = {
@@ -127,7 +127,8 @@ class _AuthSet1State extends State<AuthSet1> {
 
               if (isValid) {
                 _formKey.currentState.save();
-                Navigator.of(context).pushNamed(AuthSet2.routeName, arguments: [
+                Navigator.of(context)
+                    .pushNamed(AuthScreenSet2.routeName, arguments: [
                   _authDataSet1['name'],
                   _authDataSet1['semester'],
                   _authDataSet1['section'],

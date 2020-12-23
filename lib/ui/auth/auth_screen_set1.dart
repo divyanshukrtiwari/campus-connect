@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:my_class/ui/auth/auth_set1.dart';
 
-class AuthScreen extends StatefulWidget {
-  @override
-  _AuthScreenState createState() => _AuthScreenState();
-}
+import 'auth_form_set1.dart';
 
-class _AuthScreenState extends State<AuthScreen> {
+class AuthScreenSet1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -17,14 +13,12 @@ class _AuthScreenState extends State<AuthScreen> {
             alignment: Alignment.topLeft,
             child: Image.asset(
               "assets/images/topBorder.png",
-              width: height * .35,
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
             child: Image.asset(
               "assets/images/bottomBorder.png",
-              height: height * .3,
             ),
           ),
           Align(
@@ -38,7 +32,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: AuthSet1(),
+                    child: AuthFormSet1(),
                   ),
                 ],
               ),
