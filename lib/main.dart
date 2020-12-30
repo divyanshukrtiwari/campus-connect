@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         AuthScreenSet2.routeName: (ctx) => AuthScreenSet2(),
         NoticesTabHome.routeName: (ctx) => NoticesTabHome(),
+        DashboardPage.routeName: (ctx) => DashboardPage(),
       },
     );
   }

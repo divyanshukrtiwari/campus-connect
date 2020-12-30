@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:my_class/helpers/student.dart';
+import 'package:my_class/ui/dashboard/dashboard_page.dart';
 
 class AuthFormSet2 extends StatefulWidget {
   @override
@@ -39,6 +40,8 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
             'password': student['password'],
           },
         );
+        
+        Navigator.of(context).pushNamed(DashboardPage.routeName);
       } on PlatformException catch (error) {
         String message = 'Please check your credentials and try again';
 

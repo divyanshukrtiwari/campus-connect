@@ -23,7 +23,6 @@ class ExamsTab extends StatelessWidget {
               ),
               elevation: 2,
               child: ListTile(
-                visualDensity: VisualDensity.minimumDensity,
                 title: Text(doc[index]['title']),
                 subtitle: Text(
                   doc[index]['text'],

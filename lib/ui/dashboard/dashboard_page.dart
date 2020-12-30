@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 
 class DashboardPage extends StatelessWidget {
+  static const routeName = '/dashboard';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
