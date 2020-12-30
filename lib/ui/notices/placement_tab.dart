@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ExamsNoticeTab extends StatelessWidget {
+class PlacementTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Center(
-        child: Text("Exams Notice"),
+        child: Text("Placement Notice"),
       ),
     );
   }

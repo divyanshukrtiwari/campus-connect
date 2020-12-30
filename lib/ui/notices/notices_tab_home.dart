@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_class/ui/notices/exams_notice_tab.dart';
-import 'package:my_class/ui/notices/placement_notice_tab.dart';
-import 'package:my_class/ui/notices/scholarship_notice_tab.dart';
+import 'package:my_class/ui/notices/exams_tab.dart';
+import 'package:my_class/ui/notices/placement_tab.dart';
+import 'package:my_class/ui/notices/scholarship_tab.dart';
 
 class NoticesTabHome extends StatefulWidget {
   static const routeName = "/notices";
@@ -11,9 +11,9 @@ class NoticesTabHome extends StatefulWidget {
 
 class _NoticesTabHomeState extends State<NoticesTabHome> {
   List<Map<String, Object>> _pages = [
-    {'page': ExamsNoticeTab()},
-    {'page': PlacementNoticeTab()},
-    {'page': ScholarshipNoticeTab()},
+    {'page': ExamsTab()},
+    {'page': PlacementTab()},
+    {'page': ScholarshipTab()},
   ];
 
   int _selectedPageIndex = 0;
@@ -30,7 +30,7 @@ class _NoticesTabHomeState extends State<NoticesTabHome> {
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
-        selectedItemColor: Theme.of(context).primaryColor,
+        selectedItemColor: Colors.teal,
         //unselectedItemColor: Colors.indigo[100],
         onTap: _selectPage,
         //backgroundColor: Colors.pink[100],
@@ -43,12 +43,12 @@ class _NoticesTabHomeState extends State<NoticesTabHome> {
             label: 'Exams',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
-            label: 'Scholarship',
+            icon: Icon(Icons.ac_unit),
+            label: 'Placements',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.monetization_on),
-            label: 'Placements',
+            icon: Icon(Icons.account_balance_wallet),
+            label: 'Scholarship',
           ),
         ],
       ),
