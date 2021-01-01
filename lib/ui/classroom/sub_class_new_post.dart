@@ -52,7 +52,7 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
                     margin: EdgeInsets.all(16),
                     padding: EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.grey.shade300,
+                      color: Colors.indigo.shade100,
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Row(
@@ -72,7 +72,10 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
                                 onPressed: () {},
                               ),
                             ),
-                            Text('Image'),
+                            Text(
+                              'Image',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         ),
                         Column(
@@ -89,7 +92,10 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
                                 onPressed: () {},
                               ),
                             ),
-                            Text('Document'),
+                            Text(
+                              'Document',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
                           ],
                         )
                       ],

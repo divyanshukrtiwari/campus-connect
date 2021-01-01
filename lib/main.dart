@@ -26,43 +26,40 @@ class MyApp extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         }
-        if (snapshot.connectionState == ConnectionState.done) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            theme: ThemeData(
-              primarySwatch: Colors.indigo,
-              visualDensity: VisualDensity.adaptivePlatformDensity,
-              textTheme: TextTheme(
-                bodyText2: GoogleFonts.poppins(
-                  color: Colors.black.withOpacity(0.65),
-                ),
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.indigo,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            textTheme: TextTheme(
+              bodyText2: GoogleFonts.poppins(
+                color: Colors.black.withOpacity(0.65),
               ),
             ),
-            home: StreamBuilder(
-              stream: FirebaseAuth.instance.authStateChanges(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                if (snapshot.hasData) {
-                  return DashboardPage();
-                }
-                return SignupScreen();
-              },
-            ),
-            routes: {
-              LoginScreen.routeName: (ctx) => LoginScreen(),
-              NoticesTabHome.routeName: (ctx) => NoticesTabHome(),
-              DashboardPage.routeName: (ctx) => DashboardPage(),
-              Classroom.routeName: (ctx) => Classroom(),
-              SubClass.routeName: (ctx) => SubClass(),
+          ),
+          home: StreamBuilder(
+            stream: FirebaseAuth.instance.authStateChanges(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+              if (snapshot.hasData) {
+                return DashboardPage();
+              }
+              return LoginScreen(false);
             },
-          );
-        }
-        return Center(
-          child: CircularProgressIndicator(),
+          ),
+          routes: {
+            SignupScreen.routeName: (ctx) => SignupScreen(),
+            LoginScreen.routeName: (ctx) => LoginScreen(false),
+            NoticesTabHome.routeName: (ctx) => NoticesTabHome(),
+            DashboardPage.routeName: (ctx) => DashboardPage(),
+            Classroom.routeName: (ctx) => Classroom(),
+            SubClass.routeName: (ctx) => SubClass(),
+          },
         );
       },
     );

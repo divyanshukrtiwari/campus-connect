@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'signup_form.dart';
 
 class SignupScreen extends StatelessWidget {
+  static const routeName = '/signup-screen';
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
