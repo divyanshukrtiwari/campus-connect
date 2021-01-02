@@ -59,7 +59,11 @@ class DashboardPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Color(0xffe7e4fb),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.indigo.shade50, Colors.indigo.shade100],
+                      ),
                     ),
                     child: Stack(
                       children: [
@@ -88,7 +92,11 @@ class DashboardPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.pink.shade50,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.pink.shade50, Colors.pink.shade100],
+                      ),
                     ),
                     child: Stack(
                       children: [
@@ -120,7 +128,11 @@ class DashboardPage extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        color: Colors.teal.shade50,
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Colors.teal.shade50, Colors.teal.shade100],
+                        ),
                       ),
                       child: Stack(
                         children: [
@@ -150,7 +162,11 @@ class DashboardPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.blue.shade50,
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Colors.blue.shade50, Colors.blue.shade100],
+                      ),
                     ),
                     child: Stack(
                       children: [
