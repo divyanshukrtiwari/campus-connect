@@ -18,6 +18,7 @@ class ExamsTab extends StatelessWidget {
             padding: EdgeInsets.all(16),
             itemCount: doc.length,
             itemBuilder: (context, index) => Card(
+              color: Colors.pink.shade100,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),

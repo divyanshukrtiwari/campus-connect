@@ -12,45 +12,46 @@ class DashboardPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(
-                top: 110,
+                top: 100,
                 bottom: 30,
               ),
               child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                  ),
-                  child: Text.rich(
-                    TextSpan(
-                        text: 'Welcome',
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                ),
+                child: Text.rich(
+                  TextSpan(
+                    text: 'Welcome',
+                    style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+                    children: [
+                      TextSpan(
+                        text: ' to',
                         style: TextStyle(
-                            fontSize: 40, fontWeight: FontWeight.bold),
-                        children: [
-                          TextSpan(
-                            text: ' to',
-                            style: TextStyle(
-                                fontSize: 40, fontWeight: FontWeight.normal),
-                          ),
-                          TextSpan(
-                            text: '\nCampus',
-                            style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          TextSpan(
-                            text: ' Connect',
-                            style: TextStyle(
-                              fontSize: 40,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ]),
-                  )),
+                            fontSize: 36, fontWeight: FontWeight.normal),
+                      ),
+                      TextSpan(
+                        text: '\nCampus',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextSpan(
+                        text: ' Connect',
+                        style: TextStyle(
+                          fontSize: 40,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
                 childAspectRatio: 1.1 / 1,
@@ -58,40 +59,58 @@ class DashboardPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.teal[100],
+                      color: Color(0xffe7e4fb),
                     ),
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Stack(
                       children: [
-                        Icon(
-                          Icons.school,
-                          size: 50,
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Image.asset(
+                            "assets/images/Classroom-cuate(1).png",
+                            width: 150,
+                          ),
                         ),
-                        Text('Classroom',
-                            style: TextStyle(
-                              fontSize: 20,
-                            )),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: Text(
+                              'Classroom',
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.teal[100],
+                      color: Colors.pink.shade50,
                     ),
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Stack(
                       children: [
-                        Icon(
-                          Icons.assignment,
-                          size: 50,
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Image.asset(
+                            "assets/images/Exams-bro(2).png",
+                            width: 130,
+                          ),
                         ),
-                        Text('Quiz',
-                            style: TextStyle(
-                              fontSize: 20,
-                            )),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: Text(
+                              'Quiz',
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -101,20 +120,27 @@ class DashboardPage extends StatelessWidget {
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        color: Colors.teal[100],
+                        color: Colors.teal.shade50,
                       ),
-                      padding: EdgeInsets.all(8),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      child: Stack(
                         children: [
-                          Icon(
-                            Icons.event_note,
-                            size: 50,
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Image.asset(
+                              "assets/images/Notify-amico.png",
+                              width: 130,
+                            ),
                           ),
-                          Text(
-                            'Notices',
-                            style: TextStyle(
-                              fontSize: 20,
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Text(
+                                'Notice',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -124,20 +150,29 @@ class DashboardPage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Colors.teal[100],
+                      color: Colors.blue.shade50,
                     ),
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    child: Stack(
                       children: [
-                        Icon(
-                          Icons.people_alt,
-                          size: 50,
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Image.asset(
+                            "assets/images/cls-ar.png",
+                            width: 130,
+                          ),
                         ),
-                        Text('Attendance',
-                            style: TextStyle(
-                              fontSize: 20,
-                            )),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 12.0),
+                            child: Text(
+                              'Attendance',
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
