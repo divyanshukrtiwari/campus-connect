@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_class/ui/notices/notices_tab_home.dart';
 
 class DashboardPage extends StatelessWidget {
+  static const routeName = '/dashboard';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +53,7 @@ class DashboardPage extends StatelessWidget {
                 padding: EdgeInsets.all(20.0),
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
+                childAspectRatio: 1.1 / 1,
                 children: [
                   Container(
                     decoration: BoxDecoration(
@@ -92,24 +95,30 @@ class DashboardPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: Colors.teal[100],
-                    ),
-                    padding: EdgeInsets.all(8),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Icon(
-                          Icons.event_note,
-                          size: 50,
-                        ),
-                        Text('Notices',
+                  InkWell(
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(NoticesTabHome.routeName),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.teal[100],
+                      ),
+                      padding: EdgeInsets.all(8),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Icon(
+                            Icons.event_note,
+                            size: 50,
+                          ),
+                          Text(
+                            'Notices',
                             style: TextStyle(
                               fontSize: 20,
-                            )),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Container(
