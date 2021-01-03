@@ -4,3 +4,36 @@ An easy to use online learning platform with features like classrooms, categoriz
 
 ## App Preview
 
+#### Role based auth
+
+<p align="center">
+    < screenshots >
+</p>
+
+#### Dashboard
+
+<p align="center">
+    < screenshots >
+</p>
+
+#### Classrooms
+
+<p align="center">
+    < screenshots >
+</p>
+
+#### Quiz/Assessments
+
+<p align="center">
+    < screenshots >
+</p>
+
+#### Notices 
+
+<p align="center">
+    < screenshots >
+</p>
+
+#### Attendance
+
+
