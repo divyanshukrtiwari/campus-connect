@@ -10,7 +10,7 @@ class ExamsTab extends StatelessWidget {
         stream: Firestore.instance.collection('exam-notices').snapshots(),
         builder: (context, snapShot) {
           if (snapShot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }
 
           final doc = snapShot.data.documents;
@@ -18,63 +18,69 @@ class ExamsTab extends StatelessWidget {
             padding: EdgeInsets.all(16),
             itemCount: doc.length,
             itemBuilder: (context, index) => Card(
-              color: Colors.pink.shade100,
+              color: Colors.blue.shade50,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
               elevation: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      doc[index]["title"],
-                      style: TextStyle(fontSize: 20),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Text(
-                      doc[index]["text"],
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              "Published By",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "CSE HOD",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Text(
+                        doc[index]["title"],
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
                         ),
-                         Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              "Published On",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                            Text(
-                              "20 Dec 2020",
-                              style: TextStyle(fontSize: 16),
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Text(
+                        doc[index]["text"],
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Published By",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              Text(
+                                "CSE HOD",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Published On",
+                                style: TextStyle(fontSize: 14),
+                              ),
+                              Text(
+                                "20 Dec 2020",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );

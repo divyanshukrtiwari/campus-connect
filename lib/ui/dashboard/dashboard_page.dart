@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -56,82 +57,66 @@ class DashboardPage extends StatelessWidget {
                 mainAxisSpacing: 10,
                 childAspectRatio: 1.1 / 1,
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.indigo.shade50, Colors.indigo.shade100],
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Image.asset(
-                            "assets/images/Classroom-cuate(1).png",
-                            width: 150,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: Text(
-                              'Classroom',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.pink.shade50, Colors.pink.shade100],
-                      ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Image.asset(
-                            "assets/images/Exams-bro(2).png",
-                            width: 130,
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: Text(
-                              'Quiz',
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                   InkWell(
-                    onTap: () => Navigator.of(context)
-                        .pushNamed(NoticesTabHome.routeName),
+                    onTap: () {
+                      Navigator.of(context).pushNamed(Classroom.routeName);
+                    },
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Hero(
+                        tag: 'class',
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Colors.indigo.shade50,
+                                Colors.indigo.shade100
+                              ],
+                            ),
+                          ),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: Image.asset(
+                                  "assets/images/Classroom-cuate(1).png",
+                                  width: 130,
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.bottomCenter,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 12.0),
+                                  child: Text(
+                                    'Classroom',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         gradient: LinearGradient(
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
-                          colors: [Colors.teal.shade50, Colors.teal.shade100],
+                          colors: [Colors.pink.shade50, Colors.pink.shade100],
                         ),
                       ),
                       child: Stack(
@@ -139,8 +124,8 @@ class DashboardPage extends StatelessWidget {
                           Align(
                             alignment: Alignment.topCenter,
                             child: Image.asset(
-                              "assets/images/Notify-amico.png",
-                              width: 130,
+                              "assets/images/Exams-bro(2).png",
+                              width: 120,
                             ),
                           ),
                           Align(
@@ -148,7 +133,7 @@ class DashboardPage extends StatelessWidget {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 12.0),
                               child: Text(
-                                'Notice',
+                                'Quiz',
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
@@ -159,37 +144,84 @@ class DashboardPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue.shade50, Colors.blue.shade100],
+                  InkWell(
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(NoticesTabHome.routeName),
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
-                    ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Image.asset(
-                            "assets/images/cls-ar.png",
-                            width: 130,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Colors.teal.shade50, Colors.teal.shade100],
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: Text(
-                              'Attendance',
-                              style: TextStyle(
-                                fontSize: 20,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Image.asset(
+                                "assets/images/Notify-amico.png",
+                                width: 110,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 12.0),
+                                child: Text(
+                                  'Notice',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(16),
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [Colors.blue.shade50, Colors.blue.shade100],
+                        ),
+                      ),
+                      child: Stack(
+                        children: [
+                          Align(
+                            alignment: Alignment.topCenter,
+                            child: Image.asset(
+                              "assets/images/cls-ar.png",
+                              width: 120,
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 12.0),
+                              child: Text(
+                                'Attendance',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
