@@ -57,7 +57,12 @@ class Classroom extends StatelessWidget {
               .snapshots(),
           builder: (context, snapShot) {
             if (snapShot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(child: CircularProgressIndicator()),
+                ],
+              );
             }
 
             final doc = snapShot.data.documents;
