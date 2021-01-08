@@ -30,7 +30,7 @@ class _NoticesTabHomeState extends State<NoticesTabHome> {
       body: _pages[_selectedPageIndex]['page'],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedPageIndex,
-        selectedItemColor: Colors.teal,
+        selectedItemColor: Colors.blue,
         //unselectedItemColor: Colors.indigo[100],
         onTap: _selectPage,
         //backgroundColor: Colors.pink[100],

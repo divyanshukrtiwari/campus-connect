@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:my_class/ui/classroom/subject_classroom.dart';
 
 class Classroom extends StatelessWidget {
   static const routeName = "/classroom";
@@ -57,42 +58,49 @@ class Classroom extends StatelessWidget {
               .snapshots(),
           builder: (context, snapShot) {
             if (snapShot.connectionState == ConnectionState.waiting) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(child: CircularProgressIndicator()),
-                ],
-              );
+              return Center(child: CircularProgressIndicator());
             }
 
             final doc = snapShot.data.documents;
+
             return ListView.builder(
               padding: EdgeInsets.all(8),
               itemCount: doc.length,
-              itemBuilder: (context, index) => Card(
-                color: Colors.blue.shade50,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16),
-                ),
-                elevation: 2,
-                child: Container(
-                  padding: EdgeInsets.only(left: 20),
-                  height: size.height * .15,
-                  decoration: BoxDecoration(
+              itemBuilder: (context, index) => InkWell(
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    SubjectClassroom.routeName,
+                    arguments: {
+                      'subject': doc[index]['subject'],
+                      'subjectId': doc[index].documentID,
+                    },
+                  );
+                },
+                child: Card(
+                  color: Colors.blue.shade50,
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [colors[index]['start'], colors[index]['end']],
-                    ),
                   ),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      doc[index]["subject"],
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                  elevation: 2,
+                  child: Container(
+                    padding: EdgeInsets.only(left: 20),
+                    height: size.height * .15,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [colors[index]['start'], colors[index]['end']],
+                      ),
+                    ),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        doc[index]["subject"],
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

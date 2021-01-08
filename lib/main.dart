@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
+import 'package:my_class/ui/classroom/subject_classroom.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
 import 'package:my_class/ui/auth/auth_screen_set1.dart';
 import 'package:my_class/ui/auth/auth_screen_set2.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         NoticesTabHome.routeName: (ctx) => NoticesTabHome(),
         DashboardPage.routeName: (ctx) => DashboardPage(),
         Classroom.routeName: (ctx) => Classroom(),
+        SubjectClassroom.routeName: (ctx) => SubjectClassroom(),
       },
     );
   }
