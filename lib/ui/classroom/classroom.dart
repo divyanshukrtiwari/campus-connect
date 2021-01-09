@@ -86,6 +86,14 @@ class Classroom extends StatelessWidget {
                     padding: EdgeInsets.only(left: 20),
                     height: size.height * .15,
                     decoration: BoxDecoration(
+                      // image: DecorationImage(
+                      //   image: AssetImage('assets/images/cloud-computing.jpg'),
+                      //   fit: BoxFit.cover,
+                      //   colorFilter: ColorFilter.mode(
+                      //     Colors.transparent.withOpacity(.07),
+                      //     BlendMode.dstATop,
+                      //   ),
+                      // ),
                       borderRadius: BorderRadius.circular(16),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,

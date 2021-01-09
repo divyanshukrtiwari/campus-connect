@@ -13,9 +13,9 @@ class SubjectClassroom extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 80,
+        toolbarHeight: 60,
         iconTheme: IconThemeData(color: Colors.black),
-        elevation: 0,
+        elevation: 1,
         backgroundColor: Colors.white,
         title: Text(
           title,
@@ -35,11 +35,12 @@ class SubjectClassroom extends StatelessWidget {
                 width: double.infinity,
                 height: size.height * .4,
                 decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue.shade50, Colors.blue.shade100]),
-                    borderRadius: BorderRadius.circular(20)),
+                  gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Colors.blue.shade50, Colors.blue.shade100]),
+                  borderRadius: BorderRadius.circular(20),
+                ),
                 child: null,
               ),
             ),
