@@ -86,7 +86,6 @@ class SubjectClassroom extends StatelessWidget {
                               EdgeInsets.symmetric(horizontal: 10, vertical: 8),
                           child: Text(
                             doc[index]['text'],
-                            overflow: TextOverflow.visible,
                           ),
                         ),
                       ),

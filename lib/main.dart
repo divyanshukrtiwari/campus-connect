@@ -18,8 +18,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _initialization,
-        builder: (ctx, snapshot) {
+      future: _initialization,
+      builder: (ctx, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (snapshot.connectionState == ConnectionState.done) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
@@ -40,6 +46,8 @@ class MyApp extends StatelessWidget {
               SubjectClassroom.routeName: (ctx) => SubjectClassroom(),
             },
           );
-        });
+        }
+      },
+    );
   }
 }
