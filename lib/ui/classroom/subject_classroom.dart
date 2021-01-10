@@ -48,7 +48,7 @@ class SubjectClassroom extends StatelessWidget {
         ),
       ),
       body: StreamBuilder(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection(
                   'classrooms/63KwnfX0AhsV33OnRHqG/seven_sem/KjSdQuVxbfX8Vk8XtR0P/syllabus/$subjectId/documents/')
               .snapshots(),

@@ -41,7 +41,7 @@ class ExamsTab extends StatelessWidget {
           ];
         },
         body: StreamBuilder(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection('notices/S9jF7cpouJ1C3gMYftqH/exam')
               .snapshots(),
           builder: (context, snapShot) {

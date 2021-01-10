@@ -19,7 +19,7 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
   Widget build(BuildContext context) {
     void _onSubmit() async {
       print("on submit called");
-      AuthResult authResult;
+      UserCredential authResult;
 
       try {
         authResult = await _auth.createUserWithEmailAndPassword(
@@ -27,10 +27,10 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
           password: student['password'],
         );
 
-        await Firestore.instance
+        await FirebaseFirestore.instance
             .collection('students')
-            .document(authResult.user.uid)
-            .setData(
+            .doc(authResult.user.uid)
+            .set(
           {
             'name': student['name'],
             'semester': student['semester'],
@@ -40,7 +40,7 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
             'password': student['password'],
           },
         );
-        
+
         Navigator.of(context).pushNamed(DashboardPage.routeName);
       } on PlatformException catch (error) {
         String message = 'Please check your credentials and try again';

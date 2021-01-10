@@ -22,6 +22,7 @@ class Classroom extends StatelessWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
+              toolbarHeight: 60,
               automaticallyImplyLeading: false,
               floating: true,
               snap: true,
@@ -52,7 +53,7 @@ class Classroom extends StatelessWidget {
           ];
         },
         body: StreamBuilder(
-          stream: Firestore.instance
+          stream: FirebaseFirestore.instance
               .collection(
                   'classrooms/63KwnfX0AhsV33OnRHqG/seven_sem/KjSdQuVxbfX8Vk8XtR0P/syllabus')
               .snapshots(),
