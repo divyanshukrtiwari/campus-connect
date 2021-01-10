@@ -40,7 +40,6 @@ class _AuthFormSet2State extends State<AuthFormSet2> {
             'password': student['password'],
           },
         );
-
         Navigator.of(context).pushNamed(DashboardPage.routeName);
       } on PlatformException catch (error) {
         String message = 'Please check your credentials and try again';

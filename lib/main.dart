@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
-import 'package:my_class/ui/classroom/subject_classroom.dart';
+import 'package:my_class/ui/classroom/sub_class.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
 import 'package:my_class/ui/auth/auth_screen_set1.dart';
 import 'package:my_class/ui/auth/auth_screen_set2.dart';
@@ -37,16 +38,32 @@ class MyApp extends StatelessWidget {
                 ),
               ),
             ),
-            home: DashboardPage(),
+            home: StreamBuilder(
+              stream: FirebaseAuth.instance.authStateChanges(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+                if (snapshot.hasData) {
+                  return DashboardPage();
+                }
+                return AuthScreenSet1();
+              },
+            ),
             routes: {
               AuthScreenSet2.routeName: (ctx) => AuthScreenSet2(),
               NoticesTabHome.routeName: (ctx) => NoticesTabHome(),
               DashboardPage.routeName: (ctx) => DashboardPage(),
               Classroom.routeName: (ctx) => Classroom(),
-              SubjectClassroom.routeName: (ctx) => SubjectClassroom(),
+              SubClass.routeName: (ctx) => SubClass(),
             },
           );
         }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
       },
     );
   }

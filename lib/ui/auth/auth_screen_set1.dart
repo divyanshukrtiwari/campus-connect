@@ -27,7 +27,7 @@ class AuthScreenSet1 extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(
-                    "assets/images/AddUser.png",
+                    "assets/images/Login-amico.png",
                     height: height * .4,
                   ),
                   Padding(

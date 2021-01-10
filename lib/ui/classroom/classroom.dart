@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:my_class/ui/classroom/subject_classroom.dart';
+import 'package:my_class/ui/classroom/sub_class.dart';
 
 class Classroom extends StatelessWidget {
   static const routeName = "/classroom";
@@ -26,7 +26,7 @@ class Classroom extends StatelessWidget {
               automaticallyImplyLeading: false,
               floating: true,
               snap: true,
-              elevation: 2,
+              elevation: 1,
               backgroundColor: Colors.white,
               expandedHeight: size.height * .4,
               pinned: true,
@@ -70,7 +70,7 @@ class Classroom extends StatelessWidget {
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
                   Navigator.of(context).pushNamed(
-                    SubjectClassroom.routeName,
+                    SubClass.routeName,
                     arguments: {
                       'subject': doc[index]['subject'],
                       'subjectId': doc[index].documentID,
