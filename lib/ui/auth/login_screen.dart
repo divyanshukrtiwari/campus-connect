@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:my_class/ui/auth/login_form.dart';
 
-import 'auth_form_set1.dart';
+class LoginScreen extends StatefulWidget {
+  static const routeName = 'LoginScreen';
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
-class AuthScreenSet1 extends StatelessWidget {
+class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -12,28 +17,26 @@ class AuthScreenSet1 extends StatelessWidget {
           Align(
             alignment: Alignment.topLeft,
             child: Image.asset(
-              "assets/images/topBorder.png",
+              "assets/images/main_top.png",
             ),
           ),
           Align(
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.bottomLeft,
             child: Image.asset(
-              "assets/images/bottomBorder.png",
+              "assets/images/main_bottom.png",
             ),
           ),
           Align(
             alignment: Alignment.center,
             child: SingleChildScrollView(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Image.asset(
                     "assets/images/Login-amico.png",
-                    height: height * .4,
+                    height: height * .45,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: AuthFormSet1(),
-                  ),
+                  LoginForm(),
                 ],
               ),
             ),

@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/classroom/sub_class.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
-import 'package:my_class/ui/auth/auth_screen_set1.dart';
-import 'package:my_class/ui/auth/auth_screen_set2.dart';
+import 'package:my_class/ui/auth/signup_screen.dart';
+import 'package:my_class/ui/auth/login_screen.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 
 void main() {
@@ -49,11 +49,11 @@ class MyApp extends StatelessWidget {
                 if (snapshot.hasData) {
                   return DashboardPage();
                 }
-                return AuthScreenSet1();
+                return SignupScreen();
               },
             ),
             routes: {
-              AuthScreenSet2.routeName: (ctx) => AuthScreenSet2(),
+              LoginScreen.routeName: (ctx) => LoginScreen(),
               NoticesTabHome.routeName: (ctx) => NoticesTabHome(),
               DashboardPage.routeName: (ctx) => DashboardPage(),
               Classroom.routeName: (ctx) => Classroom(),

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-import 'auth_screen_set2.dart';
+import 'login_screen.dart';
 import 'package:my_class/helpers/student.dart';
 
-class AuthFormSet1 extends StatefulWidget {
+class SignupForm extends StatefulWidget {
   @override
-  _AuthSet1State createState() => _AuthSet1State();
+  _SignupFormState createState() => _SignupFormState();
 }
 
-class _AuthSet1State extends State<AuthFormSet1> {
+class _SignupFormState extends State<SignupForm> {
   final _form1Key = GlobalKey<FormState>();
 
   @override
@@ -123,7 +123,7 @@ class _AuthSet1State extends State<AuthFormSet1> {
               if (isValid) {
                 _form1Key.currentState.save();
                 Navigator.of(context).pushNamed(
-                  AuthScreenSet2.routeName,
+                  LoginScreen.routeName,
                 );
               }
             },

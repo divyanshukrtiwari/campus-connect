@@ -6,12 +6,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_class/helpers/student.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
 
-class AuthFormSet2 extends StatefulWidget {
+class LoginForm extends StatefulWidget {
   @override
-  _AuthFormSet2State createState() => _AuthFormSet2State();
+  _LoginFormState createState() => _LoginFormState();
 }
 
-class _AuthFormSet2State extends State<AuthFormSet2> {
+class _LoginFormState extends State<LoginForm> {
   final _form2Key = GlobalKey<FormState>();
   final _auth = FirebaseAuth.instance;
 
