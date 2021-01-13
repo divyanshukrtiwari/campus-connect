@@ -4,9 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:my_class/helpers/student.dart';
+import 'signup_screen.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
 
 class LoginForm extends StatefulWidget {
+  LoginForm(this.isSignup);
+
+  bool isSignup;
+
   @override
   _LoginFormState createState() => _LoginFormState();
 }
@@ -18,28 +23,34 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     void _onSubmit() async {
-      print("on submit called");
       UserCredential authResult;
 
       try {
-        authResult = await _auth.createUserWithEmailAndPassword(
-          email: student['email'],
-          password: student['password'],
-        );
+        if (widget.isSignup) {
+          authResult = await _auth.createUserWithEmailAndPassword(
+            email: student['email'],
+            password: student['password'],
+          );
 
-        await FirebaseFirestore.instance
-            .collection('students')
-            .doc(authResult.user.uid)
-            .set(
-          {
-            'name': student['name'],
-            'semester': student['semester'],
-            'section': student['section'],
-            'rollno': student['rollno'],
-            'email': student['email'],
-            'password': student['password'],
-          },
-        );
+          await FirebaseFirestore.instance
+              .collection('students')
+              .doc(authResult.user.uid)
+              .set(
+            {
+              'name': student['name'],
+              'semester': student['semester'],
+              'section': student['section'],
+              'rollno': student['rollno'],
+              'email': student['email'],
+            },
+          );
+        } else {
+          authResult = await _auth.signInWithEmailAndPassword(
+            email: student['email'],
+            password: student['password'],
+          );
+        }
+
         Navigator.of(context).pushNamed(DashboardPage.routeName);
       } on PlatformException catch (error) {
         String message = 'Please check your credentials and try again';
@@ -58,6 +69,14 @@ class _LoginFormState extends State<LoginForm> {
         );
       } catch (error) {
         print(error);
+        Scaffold.of(context).showSnackBar(
+          SnackBar(
+            content: Text(error.message),
+            backgroundColor: Theme.of(context).errorColor,
+            behavior: SnackBarBehavior.floating,
+            duration: Duration(seconds: 3),
+          ),
+        );
       }
     }
 
@@ -119,7 +138,7 @@ class _LoginFormState extends State<LoginForm> {
               ),
             ),
             SizedBox(
-              height: 20,
+              height: 12,
             ),
             RaisedButton(
               onPressed: () {
@@ -137,7 +156,19 @@ class _LoginFormState extends State<LoginForm> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-            )
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            if (widget.isSignup == false)
+              FlatButton(
+                child: Text(
+                  'Sign Up instead ?',
+                  // style: TextStyle(fontStyle: FontStyle.italic),
+                ),
+                onPressed: () => Navigator.of(context)
+                    .pushReplacementNamed(SignupScreen.routeName),
+              ),
           ],
         ),
       ),

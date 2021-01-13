@@ -133,9 +133,7 @@ class _SignupFormState extends State<SignupForm> {
 
               if (isValid) {
                 _form1Key.currentState.save();
-                Navigator.of(context).pushNamed(
-                  LoginScreen.routeName,
-                );
+                Navigator.of(context).push(_createRoute());
               }
             },
             shape: RoundedRectangleBorder(
@@ -153,4 +151,28 @@ class _SignupFormState extends State<SignupForm> {
       ),
     );
   }
+}
+
+Route _createRoute() {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(true),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        var begin = Offset(0.0, 1.0);
+        var end = Offset.zero;
+        var curve = Curves.fastOutSlowIn;
+
+        var tween = Tween(begin: begin, end: end);
+        var curvedAnimation = CurvedAnimation(
+          parent: animation,
+          curve: curve,
+        );
+
+        return SlideTransition(
+          position: tween.animate(curvedAnimation),
+          child: child,
+        );
+      },
+      transitionDuration: Duration(milliseconds: 600),
+    );
+  //custom route
 }
