@@ -24,8 +24,10 @@ class _SignupFormState extends State<SignupForm> {
               decoration: InputDecoration(
                 hintText: 'Enter your full name',
               ),
+              enableSuggestions: true,
               style: TextStyle(
-                color: Theme.of(context).primaryColor,
+                color: Colors.black54,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
               validator: (value) {
@@ -51,7 +53,10 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.phone,
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                    ),
                     validator: (value) {
                       if (value.isEmpty) {
                         return 'Invalid semester!';
@@ -73,7 +78,10 @@ class _SignupFormState extends State<SignupForm> {
                       hintText: 'Section',
                     ),
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                    ),
                     validator: (value) {
                       if (value.isEmpty) {
                         return 'Invalid section!';
@@ -96,7 +104,10 @@ class _SignupFormState extends State<SignupForm> {
                     ),
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.phone,
-                    style: TextStyle(color: Theme.of(context).primaryColor),
+                    style: TextStyle(
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold,
+                    ),
                     validator: (value) {
                       if (value.isEmpty) {
                         return 'Invalid roll number!';
@@ -132,7 +143,10 @@ class _SignupFormState extends State<SignupForm> {
                 20,
               ),
             ),
-            child: Text("Next"),
+            child: Text(
+              "Next",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
             color: Colors.pink[100],
           )
         ],

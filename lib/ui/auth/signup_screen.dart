@@ -26,9 +26,33 @@ class SignupScreen extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
+                  Text.rich(
+                    TextSpan(
+                      text: 'Get',
+                      style:
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
+                      children: [
+                        TextSpan(
+                          text: ' Started by',
+                          style: TextStyle(
+                              fontSize: 36, fontWeight: FontWeight.normal),
+                        ),
+                        TextSpan(
+                          text: '\nSigning',
+                          style: TextStyle(
+                              fontSize: 40, fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(
+                          text: ' Up',
+                          style: TextStyle(
+                              fontSize: 36, fontWeight: FontWeight.normal),
+                        ),
+                      ],
+                    ),
+                  ),
                   Image.asset(
-                    "assets/images/Login-amico.png",
-                    height: height * .4,
+                    "assets/images/Personal site-amico.png",
+                    height: height * .45,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
