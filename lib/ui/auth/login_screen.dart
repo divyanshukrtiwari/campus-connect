@@ -21,9 +21,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Align(
-            alignment: Alignment.bottomLeft,
+            alignment: Alignment.bottomRight,
             child: Image.asset(
-              "assets/images/main_bottom.png",
+              "assets/images/bottomBorder.png",
             ),
           ),
           Align(
@@ -32,9 +32,33 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  Text.rich(
+                    TextSpan(
+                      text: 'User',
+                      style:
+                          TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
+                      children: [
+                        // TextSpan(
+                        //   text: ' to',
+                        //   style: TextStyle(
+                        //       fontSize: 36, fontWeight: FontWeight.normal),
+                        // ),
+                        TextSpan(
+                          text: ' Login',
+                          style: TextStyle(
+                              fontSize: 40, fontWeight: FontWeight.bold),
+                        ),
+                        // TextSpan(
+                        //   text: ' Connect',
+                        //   style: TextStyle(
+                        //       fontSize: 36, fontWeight: FontWeight.normal),
+                        // ),
+                      ],
+                    ),
+                  ),
                   Image.asset(
-                    "assets/images/Login-amico.png",
-                    height: height * .45,
+                    "assets/images/My password-amico.png",
+                    height: height * .5,
                   ),
                   LoginForm(),
                 ],

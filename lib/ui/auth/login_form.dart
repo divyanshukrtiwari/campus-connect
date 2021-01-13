@@ -79,7 +79,8 @@ class _LoginFormState extends State<LoginForm> {
                 ),
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.bold),
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please enter a valid ';
@@ -104,7 +105,8 @@ class _LoginFormState extends State<LoginForm> {
                 obscureText: true,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.emailAddress,
-                style: TextStyle(color: Theme.of(context).primaryColor),
+                style: TextStyle(
+                    color: Colors.black54, fontWeight: FontWeight.bold),
                 validator: (value) {
                   if (value.isEmpty) {
                     return 'Please enter a valid password';
