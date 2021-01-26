@@ -10,4 +10,8 @@ Map<String, String> student = {
 Map<String, String> teacher = {
   'name':'',
   'access_code':'',
+  'email':'',
+  'password':'',
 };
+
+bool isTeacher = false;

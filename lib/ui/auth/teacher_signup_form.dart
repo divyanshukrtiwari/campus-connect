@@ -53,7 +53,7 @@ class _TeacherSignupFormState extends State<TeacherSignupForm> {
               textAlign: TextAlign.center,
               validator: (value) {
                 if (value.isEmpty || value.length < 4) {
-                  return 'Please enter your access code';
+                  return 'Please enter valid access code';
                 }
                 return null;
               },

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'signup_form.dart';
+import 'package:my_class/helpers/user_details.dart';
+import 'teacher_signup_form.dart';
 
 class SignupScreen extends StatefulWidget {
   static const routeName = '/signup-screen';
@@ -10,7 +12,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
-  bool isTeacher = false;
+  //bool isTeacher = false;
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: isTeacher ? Container() :SignupForm(),
+                    child: isTeacher ? TeacherSignupForm() : SignupForm(),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

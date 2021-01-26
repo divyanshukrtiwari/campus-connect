@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_class/helpers/user_details.dart';
-import 'signup_screen.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
+
+import 'signup_screen.dart';
 
 class LoginForm extends StatefulWidget {
   LoginForm(this.isSignup);
@@ -24,31 +24,60 @@ class _LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     void _onSubmit() async {
       UserCredential authResult;
+      print("\n\n");
+      print(teacher['email']);
+      print(teacher['password']);
+      print(teacher['access_code']);
+      print(teacher['name']);
+      print("\n\n");
 
       try {
         if (widget.isSignup) {
-          authResult = await _auth.createUserWithEmailAndPassword(
-            email: student['email'],
-            password: student['password'],
-          );
-
-          await FirebaseFirestore.instance
-              .collection('students')
-              .doc(authResult.user.uid)
-              .set(
-            {
-              'name': student['name'],
-              'semester': student['semester'],
-              'section': student['section'],
-              'rollno': student['rollno'],
-              'email': student['email'],
-            },
-          );
+          if (isTeacher) {
+            authResult = await _auth.createUserWithEmailAndPassword(
+              email: teacher['email'],
+              password: teacher['password'],
+            );
+            await FirebaseFirestore.instance
+                .collection('teachers')
+                .doc(authResult.user.uid)
+                .set(
+              {
+                'name': teacher['name'],
+                'email': teacher['email'],
+                'access_code': teacher['access_code'],
+              },
+            );
+          } else {
+            authResult = await _auth.createUserWithEmailAndPassword(
+              email: student['email'],
+              password: student['password'],
+            );
+            await FirebaseFirestore.instance
+                .collection('students')
+                .doc(authResult.user.uid)
+                .set(
+              {
+                'name': student['name'],
+                'semester': student['semester'],
+                'section': student['section'],
+                'rollno': student['rollno'],
+                'email': student['email'],
+              },
+            );
+          }
         } else {
-          authResult = await _auth.signInWithEmailAndPassword(
-            email: student['email'],
-            password: student['password'],
-          );
+          if (isTeacher) {
+            authResult = await _auth.signInWithEmailAndPassword(
+              email: teacher['email'],
+              password: teacher['password'],
+            );
+          } else {
+            authResult = await _auth.signInWithEmailAndPassword(
+              email: student['email'],
+              password: student['password'],
+            );
+          }
         }
 
         Navigator.of(context).pushNamed(DashboardPage.routeName);
@@ -107,7 +136,9 @@ class _LoginFormState extends State<LoginForm> {
                   return null;
                 },
                 onSaved: (value) {
-                  student['email'] = value;
+                  isTeacher
+                      ? teacher['email'] = value
+                      : student['email'] = value;
                 },
               ),
             ),
@@ -133,7 +164,9 @@ class _LoginFormState extends State<LoginForm> {
                   return null;
                 },
                 onSaved: (value) {
-                  student['password'] = value;
+                  isTeacher
+                      ? teacher['password'] = value
+                      : student['password'] = value;
                 },
               ),
             ),
