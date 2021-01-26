@@ -6,3 +6,8 @@ Map<String, String> student = {
   'email': '',
   'password': '',
 };
+
+Map<String, String> teacher = {
+  'name':'',
+  'access_code':'',
+};

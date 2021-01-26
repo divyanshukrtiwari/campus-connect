@@ -7,6 +7,7 @@ class DashboardPage extends StatelessWidget {
   static const routeName = '/dashboard';
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -53,10 +54,10 @@ class DashboardPage extends StatelessWidget {
             flex: 3,
             child: GridView.count(
               crossAxisCount: 2,
-              padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
-              crossAxisSpacing: 8,
-              mainAxisSpacing: 8,
-              childAspectRatio: 1.1 / 1,
+              padding: EdgeInsets.symmetric(horizontal: height*.055, vertical: height*.03),
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 10,
+              childAspectRatio: 1.15 / 1,
               children: [
                 InkWell(
                   onTap: () {

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:my_class/helpers/student.dart';
+import 'package:my_class/helpers/user_details.dart';
 import 'signup_screen.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
 

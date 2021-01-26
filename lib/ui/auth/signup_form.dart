@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'login_screen.dart';
-import 'package:my_class/helpers/student.dart';
+import 'package:my_class/helpers/user_details.dart';
 
 class SignupForm extends StatefulWidget {
   @override
@@ -123,7 +123,7 @@ class _SignupFormState extends State<SignupForm> {
             ],
           ),
           SizedBox(
-            height: 35,
+            height: 20,
           ),
           RaisedButton(
             onPressed: () {

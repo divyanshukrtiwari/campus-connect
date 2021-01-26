@@ -7,11 +7,11 @@ class Classroom extends StatelessWidget {
   static const routeName = "/classroom";
 
   final Map<int, Map<String, Color>> colors = {
-    0: {'start': Colors.teal.shade50, 'end': Colors.teal.shade100},
-    1: {'start': Colors.blue.shade50, 'end': Colors.blue.shade100},
-    2: {'start': Colors.indigo.shade50, 'end': Colors.indigo.shade100},
-    3: {'start': Colors.pink.shade50, 'end': Colors.pink.shade100},
-    4: {'start': Colors.purple.shade50, 'end': Colors.purple.shade100}
+    0: {'start': Colors.teal.shade100, 'end': Colors.teal.shade200},
+    1: {'start': Colors.blue.shade100, 'end': Colors.blue.shade200},
+    2: {'start': Colors.indigo.shade100, 'end': Colors.indigo.shade200},
+    3: {'start': Colors.pink.shade100, 'end': Colors.pink.shade200},
+    4: {'start': Colors.purple.shade100, 'end': Colors.purple.shade200}
   };
   @override
   Widget build(BuildContext context) {
@@ -65,6 +65,7 @@ class Classroom extends StatelessWidget {
             final doc = snapShot.data.documents;
 
             return ListView.builder(
+
               padding: EdgeInsets.all(8),
               itemCount: doc.length,
               itemBuilder: (context, index) => InkWell(
@@ -80,14 +81,15 @@ class Classroom extends StatelessWidget {
                 child: Card(
                   color: Colors.blue.shade50,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                   elevation: 2,
                   child: Container(
                     padding: EdgeInsets.only(left: 20),
-                    height: size.height * .15,
+                    height: size.height * .17,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
+                      //image: DecorationImage(image: AssetImage('assets/images/undraw_Books_l33t.png'), ),
+                      borderRadius: BorderRadius.circular(12),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,

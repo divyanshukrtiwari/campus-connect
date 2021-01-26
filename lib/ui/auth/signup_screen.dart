@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 
 import 'signup_form.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   static const routeName = '/signup-screen';
+
+  @override
+  _SignupScreenState createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  bool isTeacher = false;
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -30,8 +38,8 @@ class SignupScreen extends StatelessWidget {
                   Text.rich(
                     TextSpan(
                       text: 'Get',
-                      style:
-                          TextStyle(fontSize: 36, fontWeight: FontWeight.normal),
+                      style: TextStyle(
+                          fontSize: 36, fontWeight: FontWeight.normal),
                       children: [
                         TextSpan(
                           text: ' Started by',
@@ -57,7 +65,34 @@ class SignupScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
-                    child: SignupForm(),
+                    child: isTeacher ? Container() :SignupForm(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Student",
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.normal),
+                      ),
+                      Switch(
+                        activeColor: Colors.blue,
+                        value: isTeacher,
+                        onChanged: (value) {
+                          if (isTeacher) {
+                            isTeacher = false;
+                          } else {
+                            isTeacher = true;
+                          }
+                          setState(() {});
+                        },
+                      ),
+                      Text(
+                        'Teacher',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.normal),
+                      ),
+                    ],
                   ),
                 ],
               ),
