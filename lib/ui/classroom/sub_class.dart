@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:my_class/helpers/user_details.dart';
 import 'sub_class_post.dart';
 import 'sub_class_new_post.dart';
 import 'sub_class_drawer.dart';

@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 import 'dashboard_drawer.dart';
+import 'package:my_class/helpers/user_details.dart';
 
 class DashboardPage extends StatelessWidget {
   static const routeName = '/dashboard';
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;

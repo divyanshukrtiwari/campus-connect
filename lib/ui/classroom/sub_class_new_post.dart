@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SubClassNewPost extends StatefulWidget {
@@ -17,15 +16,39 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
 
   var enteredMsg = '';
 
+  bool _teacher = false;
+
   bool popUp = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _isteacher();
+  }
+
+  void _isteacher() async{
+    final user = FirebaseAuth.instance.currentUser;
+    final teacherData = await FirebaseFirestore.instance
+        .collection('teachers')
+        .doc(user.uid)
+        .get();
+
+
+    if(teacherData.exists){
+      setState(() {
+        _teacher = true;
+      });
+    }
+  }
 
   void _sendMsg() async {
     FocusScope.of(context).unfocus();
     final user = FirebaseAuth.instance.currentUser;
-    final userData = await FirebaseFirestore.instance
-        .collection('students')
+    final teacherData = await FirebaseFirestore.instance
+        .collection('teachers')
         .doc(user.uid)
         .get();
+
     FirebaseFirestore.instance
         .collection(
             'classrooms/63KwnfX0AhsV33OnRHqG/seven_sem/KjSdQuVxbfX8Vk8XtR0P/syllabus/${widget.subjectId}/documents')
@@ -33,7 +56,7 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
       'text': enteredMsg,
       'timeStamp': Timestamp.now(),
       'userId': user.uid,
-      'username': userData['name'],
+      'username': teacherData['name'],
     });
     _controller.clear();
     setState(() {});
@@ -41,7 +64,7 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return _teacher ? Container(
       height: popUp ? 220 : 80,
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       child: Column(
@@ -166,6 +189,6 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
           ),
         ],
       ),
-    );
+    ): SizedBox(height: 2,);
   }
 }

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:my_class/helpers/user_details.dart';
 
 class DashboardDrawer extends StatefulWidget {
@@ -20,24 +19,26 @@ class _DashboardDrawerState extends State<DashboardDrawer> {
 
   void getUser() async {
     final user = FirebaseAuth.instance.currentUser;
-    if(isTeacher){
-      final userdata = await FirebaseFirestore.instance
-          .collection('teachers')
-          .doc(user.uid)
-          .get();
+
+    final teacherData = await FirebaseFirestore.instance
+        .collection('teachers')
+        .doc(user.uid)
+        .get();
+
+    final studentData = await FirebaseFirestore.instance
+        .collection('students')
+        .doc(user.uid)
+        .get();
+
+    if (teacherData.exists) {
       setState(() {
-        username = userdata['name'];
+        username = teacherData['name'];
       });
-    }else{
-      final userdata = await FirebaseFirestore.instance
-          .collection('students')
-          .doc(user.uid)
-          .get();
+    } else {
       setState(() {
-        username = userdata['name'];
+        username = studentData['name'];
       });
     }
-
   }
 
   @override
