@@ -2,8 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_class/helpers/splash_screen.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/classroom/sub_class.dart';
+import 'package:my_class/ui/classroom/take_attendance.dart';
 import 'package:my_class/ui/dashboard/dashboard_page.dart';
 import 'package:my_class/ui/auth/signup_screen.dart';
 import 'package:my_class/ui/auth/login_screen.dart';
@@ -22,9 +24,7 @@ class MyApp extends StatelessWidget {
       future: _initialization,
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
+          return SplashScreen();
         }
 
         return MaterialApp(
@@ -42,9 +42,7 @@ class MyApp extends StatelessWidget {
             stream: FirebaseAuth.instance.authStateChanges(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
+                return SplashScreen();
               }
               if (snapshot.hasData) {
                 return DashboardPage();
@@ -59,6 +57,7 @@ class MyApp extends StatelessWidget {
             DashboardPage.routeName: (ctx) => DashboardPage(),
             Classroom.routeName: (ctx) => Classroom(),
             SubClass.routeName: (ctx) => SubClass(),
+            TakeAttendance.routeName:(ctx) => TakeAttendance(),
           },
         );
       },

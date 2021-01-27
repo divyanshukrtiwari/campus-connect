@@ -13,6 +13,7 @@ class Classroom extends StatelessWidget {
     3: {'start': Colors.pink.shade100, 'end': Colors.pink.shade200},
     4: {'start': Colors.purple.shade100, 'end': Colors.purple.shade200}
   };
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -65,7 +66,6 @@ class Classroom extends StatelessWidget {
             final doc = snapShot.data.documents;
 
             return ListView.builder(
-
               padding: EdgeInsets.all(8),
               itemCount: doc.length,
               itemBuilder: (context, index) => InkWell(
@@ -88,7 +88,6 @@ class Classroom extends StatelessWidget {
                     padding: EdgeInsets.only(left: 20),
                     height: size.height * .17,
                     decoration: BoxDecoration(
-                      //image: DecorationImage(image: AssetImage('assets/images/undraw_Books_l33t.png'), ),
                       borderRadius: BorderRadius.circular(12),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
@@ -96,15 +95,24 @@ class Classroom extends StatelessWidget {
                         colors: [colors[index]['start'], colors[index]['end']],
                       ),
                     ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        doc[index]["subject"],
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          right: 20,
+                          bottom: 20,
+                          child: Image.asset('')
                         ),
-                      ),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            doc[index]["subject"],
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

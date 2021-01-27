@@ -45,7 +45,6 @@ class _DashboardDrawerState extends State<DashboardDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        color: Colors.teal.shade50,
         padding: EdgeInsets.only(
           top: 20,
           left: 16,
@@ -54,7 +53,7 @@ class _DashboardDrawerState extends State<DashboardDrawer> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.all(12.0),
+              padding: const EdgeInsets.only(top:16.0,bottom:8.0),
               child: Text(
                 "Logged in as",
                 style: TextStyle(
@@ -63,7 +62,10 @@ class _DashboardDrawerState extends State<DashboardDrawer> {
                 ),
               ),
             ),
-            SizedBox(height: 12),
+            Divider(
+              indent: 8,
+              endIndent: 12,
+            ),
             Row(
               children: [
                 CircleAvatar(
@@ -85,24 +87,27 @@ class _DashboardDrawerState extends State<DashboardDrawer> {
             ),
             SizedBox(height: 12),
             Divider(
-              indent: 12,
+              indent: 8,
               endIndent: 12,
             ),
             SizedBox(height: 12),
             GestureDetector(
               onTap: () => FirebaseAuth.instance.signOut(),
-              child: Row(
-                children: [
-                  Icon(Icons.logout),
-                  SizedBox(width: 16),
-                  Text(
-                    "Logout",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  )
-                ],
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: [
+                    Icon(Icons.logout),
+                    SizedBox(width: 16),
+                    Text(
+                      "Logout",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
           ],
