@@ -11,6 +11,12 @@ class TakeAttendance extends StatefulWidget {
 class _TakeAttendanceState extends State<TakeAttendance> {
   List _students = [];
 
+  List _filteredStudents = [];
+
+  bool _sectionA = false;
+
+  bool _sectionB = false;
+
   void getStudents() async {
     final studentData =
         await FirebaseFirestore.instance.collection('students').get();
@@ -19,9 +25,21 @@ class _TakeAttendanceState extends State<TakeAttendance> {
     });
   }
 
+  void filter(String sec) {
+    _filteredStudents.clear();
+    _students.forEach((element) {
+       if (element['section'].toString().toLowerCase() == sec){
+         _filteredStudents.add(element);
+       }
+
+      print(element['section']);
+    });
+
+    setState(() {});
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getStudents();
   }
@@ -44,7 +62,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric( horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -56,29 +74,59 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                        padding: EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.blue.shade100),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Text(
-                            "A",
-                            style: TextStyle(fontSize: 20),
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.blue.shade200,
+                        ),
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(26),
+                            color:
+                                _sectionA ? Colors.blue.shade50 : Colors.white,
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _sectionA = !_sectionA;
+                              });
+                               filter('a');
+                            },
+                            child: Text(
+                              "A",
+                              style: TextStyle(fontSize: 20),
+                            ),
                           ),
                         ),
                       ),
                       SizedBox(width: 12),
                       Container(
-                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                        padding: EdgeInsets.all(3),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.pink.shade100),
-                        child: InkWell(
-                          onTap: () {},
-                          child: Text(
-                            "B",
-                            style: TextStyle(fontSize: 20),
+                          borderRadius: BorderRadius.circular(25),
+                          color: Colors.pink.shade200,
+                        ),
+                        child: Container(
+                          padding:
+                              EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(26),
+                            color:
+                                _sectionB ? Colors.pink.shade50 : Colors.white,
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              setState(() {
+                                _sectionB = !_sectionB;
+                              });
+                              filter('b');
+                            },
+                            child: Text(
+                              "B",
+                              style: TextStyle(fontSize: 20),
+                            ),
                           ),
                         ),
                       ),
@@ -91,10 +139,23 @@ class _TakeAttendanceState extends State<TakeAttendance> {
               padding: EdgeInsets.only(top: 12),
               height: 500,
               child: ListView.builder(
-                itemCount: _students.length,
+                itemCount: _sectionA || _sectionB
+                    ? _filteredStudents.length
+                    : _students.length,
                 itemBuilder: (ctx, index) => ListTile(
-                  leading: Text(_students[index]['rollno']),
-                  title: Text(_students[index]['name'],style: TextStyle(fontSize: 18),),
+                  dense: true,
+                  leading: Text(
+                    _sectionA || _sectionB
+                        ? _filteredStudents[index]['rollno']
+                        : _students[index]['rollno'],
+                    textAlign: TextAlign.center,
+                  ),
+                  title: Text(
+                    _sectionA || _sectionB
+                        ? _filteredStudents[index]['name']
+                        : _students[index]['name'],
+                    style: TextStyle(fontSize: 18),
+                  ),
                 ),
               ),
             ),

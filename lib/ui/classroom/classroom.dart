@@ -97,11 +97,11 @@ class Classroom extends StatelessWidget {
                     ),
                     child: Stack(
                       children: [
-                        Positioned(
-                          right: 20,
-                          bottom: 20,
-                          child: Image.asset('')
-                        ),
+                       // Positioned(
+                       //    right: 20,
+                       //    bottom: 20,
+                       //     child: Image.asset('')
+                       //  ),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(

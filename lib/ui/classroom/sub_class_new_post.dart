@@ -65,7 +65,7 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
   @override
   Widget build(BuildContext context) {
     return _teacher ? Container(
-      height: popUp ? 220 : 80,
+      height: popUp ? 220 : 70,
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       child: Column(
         children: [
@@ -126,7 +126,6 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
                   ),
                 )
               : SizedBox(
-                  height: 0,
                 ),
           Row(
             children: <Widget>[
@@ -189,6 +188,6 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
           ),
         ],
       ),
-    ): SizedBox(height: 2,);
+    ): SizedBox();
   }
 }
