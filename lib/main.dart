@@ -10,6 +10,7 @@ import 'package:my_class/ui/dashboard/dashboard_page.dart';
 import 'package:my_class/ui/auth/signup_screen.dart';
 import 'package:my_class/ui/auth/login_screen.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
+import 'package:my_class/ui/quiz/quiz_landing.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +58,8 @@ class MyApp extends StatelessWidget {
             DashboardPage.routeName: (ctx) => DashboardPage(),
             Classroom.routeName: (ctx) => Classroom(),
             SubClass.routeName: (ctx) => SubClass(),
-            TakeAttendance.routeName:(ctx) => TakeAttendance(),
+            TakeAttendance.routeName: (ctx) => TakeAttendance(),
+            QuizLanding.routeName: (ctx) => QuizLanding(),
           },
         );
       },

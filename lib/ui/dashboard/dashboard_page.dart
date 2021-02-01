@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
+import 'package:my_class/ui/quiz/quiz_landing.dart';
 import 'dashboard_drawer.dart';
 import 'package:my_class/helpers/user_details.dart';
 
@@ -56,7 +57,8 @@ class DashboardPage extends StatelessWidget {
             flex: 3,
             child: GridView.count(
               crossAxisCount: 2,
-              padding: EdgeInsets.symmetric(horizontal: height*.055, vertical: height*.03),
+              padding: EdgeInsets.symmetric(
+                  horizontal: height * .055, vertical: height * .03),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               childAspectRatio: 1.15 / 1,
@@ -111,42 +113,49 @@ class DashboardPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
+                InkWell(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(QuizLanding.routeName),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.pink.shade50, Colors.pink.shade100],
-                      ),
                     ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Image.asset(
-                            "assets/images/Exams-bro(2).png",
-                            width: 120,
+                    elevation: 1,
+                    child: Hero(
+                      tag: 'quiz',
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Colors.pink.shade50, Colors.pink.shade100],
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: Text(
-                              'Quiz',
-                              style: TextStyle(
-                                fontSize: 20,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Image.asset(
+                                "assets/images/Exams-bro(2).png",
+                                width: 120,
                               ),
                             ),
-                          ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 12.0),
+                                child: Text(
+                                  'Quiz',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),
