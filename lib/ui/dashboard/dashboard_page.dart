@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 import 'package:my_class/ui/quiz/quiz_landing.dart';
+
 import 'dashboard_drawer.dart';
-import 'package:my_class/helpers/user_details.dart';
 
 class DashboardPage extends StatelessWidget {
   static const routeName = '/dashboard';
@@ -46,22 +46,21 @@ class DashboardPage extends StatelessWidget {
       drawer: DashboardDrawer(),
       body: Column(
         children: [
-          SizedBox(height: 20),
-          Expanded(
-            flex: 2,
-            child: Image.asset(
-              'assets/images/Learning-amico.png',
-            ),
-          ),
+          SizedBox(height: 15),
           Expanded(
             flex: 3,
+            child: Image.asset('assets/images/Teacher-cuate.png'),
+          ),
+          SizedBox(height: 10),
+          Expanded(
+            flex: 4,
             child: GridView.count(
               crossAxisCount: 2,
               padding: EdgeInsets.symmetric(
                   horizontal: height * .055, vertical: height * .03),
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 1.15 / 1,
+              childAspectRatio: 1.1 / 1,
               children: [
                 InkWell(
                   onTap: () {
@@ -91,64 +90,18 @@ class DashboardPage extends StatelessWidget {
                             Align(
                               alignment: Alignment.topCenter,
                               child: Image.asset(
-                                "assets/images/Classroom-cuate(1).png",
-                                width: 130,
+                                "assets/images/Teaching.png",
+                                height: 110,
                               ),
                             ),
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: Padding(
-                                padding: const EdgeInsets.only(bottom: 12.0),
+                                padding: const EdgeInsets.only(bottom: 8.0),
                                 child: Text(
                                   'Classroom',
                                   style: TextStyle(
-                                    fontSize: 20,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(QuizLanding.routeName),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 1,
-                    child: Hero(
-                      tag: 'quiz',
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Colors.pink.shade50, Colors.pink.shade100],
-                          ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Image.asset(
-                                "assets/images/Exams-bro(2).png",
-                                width: 120,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 12.0),
-                                child: Text(
-                                  'Quiz',
-                                  style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
                                   ),
                                 ),
                               ),
@@ -190,11 +143,57 @@ class DashboardPage extends StatelessWidget {
                             Align(
                               alignment: Alignment.bottomCenter,
                               child: Padding(
-                                padding: const EdgeInsets.only(bottom: 12.0),
+                                padding: const EdgeInsets.only(bottom: 8.0),
                                 child: Text(
                                   'Notice',
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(QuizLanding.routeName),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
+                    elevation: 1,
+                    child: Hero(
+                      tag: 'quiz',
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Colors.pink.shade50, Colors.pink.shade100],
+                          ),
+                        ),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Image.asset(
+                                "assets/images/Exams-amico.png",
+                                width: 100,
+                              ),
+                            ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  'Quiz',
+                                  style: TextStyle(
+                                    fontSize: 18,
                                   ),
                                 ),
                               ),
@@ -224,18 +223,18 @@ class DashboardPage extends StatelessWidget {
                         Align(
                           alignment: Alignment.topCenter,
                           child: Image.asset(
-                            "assets/images/cls-ar.png",
-                            width: 120,
+                            "assets/images/Nerd-amico.png",
+                            width: 110,
                           ),
                         ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
+                            padding: const EdgeInsets.only(bottom: 8.0),
                             child: Text(
                               'Attendance',
                               style: TextStyle(
-                                fontSize: 20,
+                                fontSize: 18,
                               ),
                             ),
                           ),

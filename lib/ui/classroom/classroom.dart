@@ -33,6 +33,7 @@ class Classroom extends StatelessWidget {
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
+                titlePadding: EdgeInsets.all(6.0),
                 // titlePadding: EdgeInsetsDirectional.only(top: 8.0),
                 title: Text(
                   "Classrooms",
@@ -44,9 +45,12 @@ class Classroom extends StatelessWidget {
                 ),
                 background: Hero(
                   tag: 'class',
-                  child: Image.asset(
-                    'assets/images/Classroom-cuate(1).png',
-                    alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Image.asset(
+                      'assets/images/Teaching.png',
+                      alignment: Alignment.center,
+                    ),
                   ),
                 ),
               ),
@@ -79,16 +83,15 @@ class Classroom extends StatelessWidget {
                   );
                 },
                 child: Card(
-                  color: Colors.blue.shade50,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  elevation: 2,
+                  elevation: 1,
                   child: Container(
                     padding: EdgeInsets.only(left: 20),
-                    height: size.height * .17,
+                    height: size.height * .15,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(8),
                       gradient: LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,

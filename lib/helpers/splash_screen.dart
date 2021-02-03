@@ -7,27 +7,38 @@ class SplashScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: Center(
-          child: Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Campus',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.pink.withOpacity(0.7),
-                  ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                child: Image.asset(
+                  'assets/images/Online world-pana.png',
+                  height: 150,
                 ),
+              ),
+              Text.rich(
                 TextSpan(
-                  text: ' Connect',
-                  style: TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.normal,
-                    color: Colors.pink.withOpacity(0.7),
-                  ),
+                  children: [
+                    TextSpan(
+                      text: 'Campus',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.pink.withOpacity(0.7),
+                      ),
+                    ),
+                    TextSpan(
+                      text: ' Connect',
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.pink.withOpacity(0.7),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

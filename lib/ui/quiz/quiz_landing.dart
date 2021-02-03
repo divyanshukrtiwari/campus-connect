@@ -9,11 +9,11 @@ class QuizLanding extends StatelessWidget {
   static const routeName = "/quiz-landing";
 
   final Map<int, Map<String, Color>> colors = {
-    0: {'start': Colors.teal.shade100, 'end': Colors.teal.shade200},
-    1: {'start': Colors.blue.shade100, 'end': Colors.blue.shade200},
-    2: {'start': Colors.indigo.shade100, 'end': Colors.indigo.shade200},
-    3: {'start': Colors.pink.shade100, 'end': Colors.pink.shade200},
-    4: {'start': Colors.purple.shade100, 'end': Colors.purple.shade200}
+    0: {'start': Colors.teal.shade50, 'end': Colors.teal.shade50},
+    1: {'start': Colors.blue.shade50, 'end': Colors.blue.shade200},
+    2: {'start': Colors.indigo.shade50, 'end': Colors.indigo.shade200},
+    3: {'start': Colors.pink.shade50, 'end': Colors.pink.shade200},
+    4: {'start': Colors.purple.shade50, 'end': Colors.purple.shade200}
   };
 
   @override
@@ -29,11 +29,12 @@ class QuizLanding extends StatelessWidget {
               automaticallyImplyLeading: false,
               floating: true,
               snap: true,
-              elevation: 1,
+              elevation: 0,
               backgroundColor: Colors.white,
               expandedHeight: size.height * .4,
               pinned: true,
               flexibleSpace: FlexibleSpaceBar(
+                titlePadding: EdgeInsets.all(6.0),
                 centerTitle: true,
                 // titlePadding: EdgeInsetsDirectional.only(top: 8.0),
                 title: Text(
@@ -46,9 +47,12 @@ class QuizLanding extends StatelessWidget {
                 ),
                 background: Hero(
                   tag: 'quiz',
-                  child: Image.asset(
-                    'assets/images/Exams-bro(2).png',
-                    alignment: Alignment.center,
+                  child: Padding(
+                    padding: const EdgeInsets.all(24.0),
+                    child: Image.asset(
+                      'assets/images/Exams-amico.png',
+                      alignment: Alignment.center,
+                    ),
                   ),
                 ),
               ),
@@ -86,29 +90,25 @@ class QuizLanding extends StatelessWidget {
                       ));
                 },
                 child: Card(
-                  color: Colors.blue.shade50,
+                  color: colors[index]['start'],
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(8),
                   ),
-                  elevation: 2,
+                  elevation: 1,
                   child: Container(
                     padding: EdgeInsets.only(left: 20),
-                    height: size.height * .17,
+                    height: size.height * .1,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [colors[index]['start'], colors[index]['end']],
-                      ),
+                      borderRadius: BorderRadius.circular(8),
+                      // gradient: LinearGradient(
+                      //   begin: Alignment.topLeft,
+                      //   end: Alignment.bottomRight,
+                      //   colors: [colors[index]['start'], colors[index]['end']],
+                      // ),
                     ),
                     child: Stack(
                       children: [
-                        // Positioned(
-                        //    right: 20,
-                        //    bottom: 20,
-                        //     child: Image.asset('')
-                        //  ),
+
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
