@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_class/ui/notices/exams_tab.dart';
-import 'package:my_class/ui/notices/placement_tab.dart';
-import 'package:my_class/ui/notices/scholarship_tab.dart';
+import 'notice.dart';
 
 class NoticesTabHome extends StatefulWidget {
   static const routeName = "/notices";
@@ -11,9 +9,9 @@ class NoticesTabHome extends StatefulWidget {
 
 class _NoticesTabHomeState extends State<NoticesTabHome> {
   List<Map<String, Object>> _pages = [
-    {'page': ExamsTab()},
-    {'page': PlacementTab()},
-    {'page': ScholarshipTab()},
+    {'page': Notice('exam')},
+    {'page': Notice('t&p')},
+    {'page': Notice('scholarship')},
   ];
 
   int _selectedPageIndex = 0;

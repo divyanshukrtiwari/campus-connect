@@ -28,15 +28,15 @@ class _TakeAttendanceState extends State<TakeAttendance> {
   void filter(String sec) {
     _filteredStudents.clear();
     _students.forEach((element) {
-       if (element['section'].toString().toLowerCase() == sec){
-         _filteredStudents.add(element);
-       }
-
-      print(element['section']);
+      if (element['section'].toString().toLowerCase() == sec) {
+        _filteredStudents.add(element);
+      }
     });
 
     setState(() {});
   }
+
+  void _setAttendance(String uid) async {}
 
   @override
   void initState() {
@@ -92,7 +92,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                               setState(() {
                                 _sectionA = !_sectionA;
                               });
-                               filter('a');
+                              filter('a');
                             },
                             child: Text(
                               "A",
@@ -155,6 +155,10 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                         ? _filteredStudents[index]['name']
                         : _students[index]['name'],
                     style: TextStyle(fontSize: 18),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.assignment_turned_in_outlined),
+                    onPressed: () => _setAttendance(_students[index]['uid']),
                   ),
                 ),
               ),

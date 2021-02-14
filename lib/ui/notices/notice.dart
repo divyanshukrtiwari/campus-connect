@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ExamsTab extends StatelessWidget {
+class Notice extends StatelessWidget {
+  Notice(this.category);
+  final String category;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -42,7 +44,7 @@ class ExamsTab extends StatelessWidget {
         },
         body: StreamBuilder(
           stream: FirebaseFirestore.instance
-              .collection('notices/S9jF7cpouJ1C3gMYftqH/exam')
+              .collection('notices/S9jF7cpouJ1C3gMYftqH/$category')
               .snapshots(),
           builder: (context, snapShot) {
             if (snapShot.connectionState == ConnectionState.waiting) {
