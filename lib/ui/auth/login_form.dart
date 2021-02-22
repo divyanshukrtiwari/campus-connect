@@ -66,9 +66,8 @@ class _LoginFormState extends State<LoginForm> {
               },
             );
             await FirebaseFirestore.instance
-                .collection('students/${authResult.user.uid}/')
-                .doc('attendance')
-                .set({});
+                .collection('students/${authResult.user.uid}/attendance')
+                .add({'totalDays': 0});
           }
         } else {
           if (isTeacher) {
