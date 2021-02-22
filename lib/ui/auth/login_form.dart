@@ -65,6 +65,10 @@ class _LoginFormState extends State<LoginForm> {
                 'email': student['email'],
               },
             );
+            await FirebaseFirestore.instance
+                .collection('students/${authResult.user.uid}/')
+                .doc('attendance')
+                .set({});
           }
         } else {
           if (isTeacher) {

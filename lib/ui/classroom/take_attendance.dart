@@ -36,7 +36,31 @@ class _TakeAttendanceState extends State<TakeAttendance> {
     setState(() {});
   }
 
-  void _setAttendance(String uid) async {}
+  Future<void> _setAttendance(String uid, String subjectName) async {
+    // /students/5VynwxvsD6WQ4Aht4234Ppu9CE02 (a student path)
+    // jhank@jhank.com jhank123
+    CollectionReference reference =
+        FirebaseFirestore.instance.collection('students/$uid');
+
+    await reference.doc('subjects').set({});
+
+    await FirebaseFirestore.instance
+        .collection('students/$uid/attendance/subjects/$subjectName')
+        .doc('daysPresent')
+        .set(
+            {
+          'present': FieldValue.arrayUnion([Timestamp.now()])
+        },
+            SetOptions(
+              merge: true,
+            )).then(
+      (something) => print('something happened'),
+    );
+
+    await reference.doc('total').update({
+      "present": FieldValue.increment(1),
+    }).then((v) => print('Updated'));
+  }
 
   @override
   void initState() {
@@ -158,7 +182,8 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                   ),
                   trailing: IconButton(
                     icon: Icon(Icons.assignment_turned_in_outlined),
-                    onPressed: () => _setAttendance(_students[index]['uid']),
+                    onPressed: () =>
+                        _setAttendance(_students[index]['uid'], 'Cryptography'),
                   ),
                 ),
               ),

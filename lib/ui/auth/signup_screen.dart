@@ -78,7 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             fontSize: 18, fontWeight: FontWeight.normal),
                       ),
                       Switch(
-                        activeColor: Colors.blue,
+                        activeColor: Colors.pink[300],
                         value: isTeacher,
                         onChanged: (value) {
                           if (isTeacher) {

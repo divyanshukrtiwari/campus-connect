@@ -21,8 +21,15 @@ class _SignupFormState extends State<SignupForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: TextFormField(
+              cursorColor: Colors.pink[300],
               decoration: InputDecoration(
                 hintText: 'Enter your full name',
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.pink[100],
+                    width: 3.0,
+                  ),
+                ),
               ),
               enableSuggestions: true,
               style: TextStyle(
@@ -48,8 +55,15 @@ class _SignupFormState extends State<SignupForm> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: TextFormField(
+                    cursorColor: Colors.pink[300],
                     decoration: InputDecoration(
                       hintText: 'Semester',
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.pink[100],
+                          width: 3.0,
+                        ),
+                      ),
                     ),
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.phone,
@@ -74,8 +88,15 @@ class _SignupFormState extends State<SignupForm> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: TextFormField(
+                    cursorColor: Colors.pink[300],
                     decoration: InputDecoration(
                       hintText: 'Section',
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.pink[100],
+                          width: 3.0,
+                        ),
+                      ),
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -99,8 +120,15 @@ class _SignupFormState extends State<SignupForm> {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                   child: TextFormField(
+                    cursorColor: Colors.pink[300],
                     decoration: InputDecoration(
                       hintText: 'Roll Number',
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.pink[100],
+                          width: 3.0,
+                        ),
+                      ),
                     ),
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.phone,
@@ -155,24 +183,24 @@ class _SignupFormState extends State<SignupForm> {
 
 Route _createRoute() {
   return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(true),
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        var begin = Offset(0.0, 1.0);
-        var end = Offset.zero;
-        var curve = Curves.fastOutSlowIn;
+    pageBuilder: (context, animation, secondaryAnimation) => LoginScreen(true),
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      var begin = Offset(0.0, 1.0);
+      var end = Offset.zero;
+      var curve = Curves.fastOutSlowIn;
 
-        var tween = Tween(begin: begin, end: end);
-        var curvedAnimation = CurvedAnimation(
-          parent: animation,
-          curve: curve,
-        );
+      var tween = Tween(begin: begin, end: end);
+      var curvedAnimation = CurvedAnimation(
+        parent: animation,
+        curve: curve,
+      );
 
-        return SlideTransition(
-          position: tween.animate(curvedAnimation),
-          child: child,
-        );
-      },
-      transitionDuration: Duration(milliseconds: 600),
-    );
+      return SlideTransition(
+        position: tween.animate(curvedAnimation),
+        child: child,
+      );
+    },
+    transitionDuration: Duration(milliseconds: 600),
+  );
   //custom route
 }

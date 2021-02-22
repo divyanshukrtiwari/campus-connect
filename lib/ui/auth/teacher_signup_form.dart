@@ -19,8 +19,15 @@ class _TeacherSignupFormState extends State<TeacherSignupForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: TextFormField(
+              cursorColor: Colors.pink[300],
               decoration: InputDecoration(
                 hintText: 'Enter your full name',
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.pink[100],
+                    width: 3.0,
+                  ),
+                ),
               ),
               enableSuggestions: true,
               style: TextStyle(
@@ -42,8 +49,16 @@ class _TeacherSignupFormState extends State<TeacherSignupForm> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: TextFormField(
+              keyboardType: TextInputType.number,
+              cursorColor: Colors.pink[300],
               decoration: InputDecoration(
                 hintText: 'Enter your access code',
+                focusedBorder: UnderlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Colors.pink[100],
+                    width: 3.0,
+                  ),
+                ),
               ),
               enableSuggestions: true,
               style: TextStyle(
@@ -62,7 +77,6 @@ class _TeacherSignupFormState extends State<TeacherSignupForm> {
               },
             ),
           ),
-
           SizedBox(
             height: 20,
           ),
@@ -90,7 +104,7 @@ class _TeacherSignupFormState extends State<TeacherSignupForm> {
           )
         ],
       ),
-    );;
+    );
   }
 }
 
@@ -117,4 +131,3 @@ Route _createRoute() {
   );
   //custom route
 }
-

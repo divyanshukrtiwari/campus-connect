@@ -10,6 +10,7 @@ class SubClassPost extends StatelessWidget {
       stream: FirebaseFirestore.instance
           .collection(
               'classrooms/63KwnfX0AhsV33OnRHqG/seven_sem/KjSdQuVxbfX8Vk8XtR0P/syllabus/$subjectId/documents/')
+          .orderBy('timeStamp', descending: true)
           .snapshots(),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -18,6 +19,7 @@ class SubClassPost extends StatelessWidget {
 
         final doc = snapshot.data.documents;
         return ListView.builder(
+          reverse: true,
           padding: EdgeInsets.all(12),
           itemCount: doc.length,
           itemBuilder: (context, index) {
