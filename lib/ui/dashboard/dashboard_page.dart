@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_class/ui/attendance/attendance.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 import 'package:my_class/ui/quiz/quiz_landing.dart';
@@ -204,42 +205,49 @@ class DashboardPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                Card(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  elevation: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
+                InkWell(
+                  onTap: () =>
+                      Navigator.of(context).pushNamed(Attendance.routeName),
+                  child: Card(
+                    shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.blue.shade50, Colors.blue.shade100],
-                      ),
                     ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Image.asset(
-                            "assets/images/Nerd-amico.png",
-                            width: 110,
+                    elevation: 1,
+                    child: Hero(
+                      tag: "Attendance",
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Colors.blue.shade50, Colors.blue.shade100],
                           ),
                         ),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 8.0),
-                            child: Text(
-                              'Attendance',
-                              style: TextStyle(
-                                fontSize: 18,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.topCenter,
+                              child: Image.asset(
+                                "assets/images/Nerd-amico.png",
+                                width: 110,
                               ),
                             ),
-                          ),
+                            Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0),
+                                child: Text(
+                                  'Attendance',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
+                      ),
                     ),
                   ),
                 ),

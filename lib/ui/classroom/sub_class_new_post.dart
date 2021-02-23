@@ -65,7 +65,7 @@ class _SubClassNewPostState extends State<SubClassNewPost> {
   @override
   Widget build(BuildContext context) {
     return _teacher ? Container(
-      height: popUp ? 220 : 70,
+      height: popUp ? 220 : 75,
       padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
       child: Column(
         children: [

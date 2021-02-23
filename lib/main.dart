@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_class/helpers/splash_screen.dart';
+import 'package:my_class/ui/attendance/attendance.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/classroom/sub_class.dart';
 import 'package:my_class/ui/classroom/take_attendance.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
             SubClass.routeName: (ctx) => SubClass(),
             TakeAttendance.routeName: (ctx) => TakeAttendance(),
             QuizLanding.routeName: (ctx) => QuizLanding(),
+            Attendance.routeName: (ctx) => Attendance(),
           },
         );
       },
