@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class TakeAttendance extends StatefulWidget {
   static const routeName = '/take-attendance';
@@ -72,7 +71,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
     var data = ModalRoute.of(context).settings.arguments as Map;
     String subjectName = data['subjectName'].toString();
     print(data);
-    String now = DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now());
+    String now = DateTime.now().toString();
     //String subjectId = data['subjectId'];
     return Scaffold(
       appBar: AppBar(
