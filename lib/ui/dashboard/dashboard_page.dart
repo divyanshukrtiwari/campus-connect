@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_class/helpers/user_details.dart';
 import 'package:my_class/ui/attendance/attendance.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
@@ -6,8 +9,40 @@ import 'package:my_class/ui/quiz/quiz_landing.dart';
 
 import 'dashboard_drawer.dart';
 
-class DashboardPage extends StatelessWidget {
+class DashboardPage extends StatefulWidget {
   static const routeName = '/dashboard';
+
+  @override
+  _DashboardPageState createState() => _DashboardPageState();
+}
+
+class _DashboardPageState extends State<DashboardPage> {
+  bool _teacher = false;
+
+  void _isteacher() async {
+    final user = FirebaseAuth.instance.currentUser;
+    final teacherData = await FirebaseFirestore.instance
+        .collection('teachers')
+        .doc(user.uid)
+        .get();
+
+    if (teacherData.exists) {
+      setState(() {
+        _teacher = true;
+      });
+    } else {
+      setState(() {
+        _teacher = false;
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _isteacher();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +89,7 @@ class DashboardPage extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Expanded(
-            flex: 4,
+            flex: _teacher ? 3 : 4,
             child: GridView.count(
               crossAxisCount: 2,
               padding: EdgeInsets.symmetric(
@@ -159,98 +194,110 @@ class DashboardPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                InkWell(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(QuizLanding.routeName),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 1,
-                    child: Hero(
-                      tag: 'quiz',
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Colors.pink.shade50, Colors.pink.shade100],
+                _teacher
+                    ? SizedBox()
+                    : InkWell(
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(QuizLanding.routeName),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
                           ),
-                        ),
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Image.asset(
-                                "assets/images/Exams-amico.png",
-                                width: 100,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  'Quiz',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
+                          elevation: 1,
+                          child: Hero(
+                            tag: 'quiz',
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.pink.shade50,
+                                    Colors.pink.shade100
+                                  ],
                                 ),
                               ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Image.asset(
+                                      "assets/images/Exams-amico.png",
+                                      width: 100,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Text(
+                                        'Quiz',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                InkWell(
-                  onTap: () =>
-                      Navigator.of(context).pushNamed(Attendance.routeName),
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    elevation: 1,
-                    child: Hero(
-                      tag: "Attendance",
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          gradient: LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Colors.blue.shade50, Colors.blue.shade100],
                           ),
                         ),
-                        child: Stack(
-                          children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Image.asset(
-                                "assets/images/Nerd-amico.png",
-                                width: 110,
-                              ),
-                            ),
-                            Align(
-                              alignment: Alignment.bottomCenter,
-                              child: Padding(
-                                padding: const EdgeInsets.only(bottom: 8.0),
-                                child: Text(
-                                  'Attendance',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                  ),
+                      ),
+                _teacher
+                    ? SizedBox()
+                    : InkWell(
+                        onTap: () => Navigator.of(context)
+                            .pushNamed(Attendance.routeName),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          elevation: 1,
+                          child: Hero(
+                            tag: "Attendance",
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.blue.shade50,
+                                    Colors.blue.shade100
+                                  ],
                                 ),
                               ),
+                              child: Stack(
+                                children: [
+                                  Align(
+                                    alignment: Alignment.topCenter,
+                                    child: Image.asset(
+                                      "assets/images/Nerd-amico.png",
+                                      width: 110,
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomCenter,
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(bottom: 8.0),
+                                      child: Text(
+                                        'Attendance',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
               ],
             ),
           ),
