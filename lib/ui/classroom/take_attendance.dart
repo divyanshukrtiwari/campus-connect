@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TakeAttendance extends StatefulWidget {
   static const routeName = '/take-attendance';
@@ -71,6 +72,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
     var data = ModalRoute.of(context).settings.arguments as Map;
     String subjectName = data['subjectName'].toString();
     print(data);
+    String now = DateFormat("dd-MM-yyyy hh:mm:ss").format(DateTime.now());
     //String subjectId = data['subjectId'];
     return Scaffold(
       appBar: AppBar(
@@ -83,149 +85,178 @@ class _TakeAttendanceState extends State<TakeAttendance> {
           style: TextStyle(color: Colors.black.withOpacity(0.65), fontSize: 26),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Choose Section",
-                    style: TextStyle(fontSize: 20),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 8.0,
+                ),
+                child: Text(
+                  subjectName,
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.blue.shade200,
-                        ),
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(26),
-                            color:
-                                _sectionA ? Colors.blue.shade50 : Colors.white,
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                _sectionA = !_sectionA;
-                              });
-                              filter('a');
-                            },
-                            child: Text(
-                              "A",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(width: 12),
-                      Container(
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.pink.shade200,
-                        ),
-                        child: Container(
-                          padding:
-                              EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(26),
-                            color:
-                                _sectionB ? Colors.pink.shade50 : Colors.white,
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              setState(() {
-                                _sectionB = !_sectionB;
-                              });
-                              filter('b');
-                            },
-                            child: Text(
-                              "B",
-                              style: TextStyle(fontSize: 20),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.only(top: 12),
-              height: 500,
-              child: ListView.builder(
-                itemCount: _sectionA || _sectionB
-                    ? _filteredStudents.length
-                    : _students.length,
-                itemBuilder: (ctx, index) => ListTile(
-                  dense: true,
-                  leading: Text(
-                    _sectionA || _sectionB
-                        ? _filteredStudents[index]['rollno']
-                        : _students[index]['rollno'],
-                    textAlign: TextAlign.center,
-                  ),
-                  title: Text(
-                    _sectionA || _sectionB
-                        ? _filteredStudents[index]['name']
-                        : _students[index]['name'],
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FlatButton(
-                        visualDensity: VisualDensity.compact,
-                        onPressed: () {
-                          _setAttendance(
-                            _students[index]['uid'],
-                            subjectName,
-                          );
-                          // setState(() {
-                          //   _students[index]['present'] == true;
-                          // });
-                        },
-                        child: Text(
-                          "P",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                      FlatButton(
-                        onPressed: () {
-                          print("absent");
-                        },
-                        child: Text(
-                          "A",
-                          style: TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  // IconButton(
-                  //   icon: Icon(Icons.assignment_turned_in_outlined),
-                  //   onPressed: () => _setAttendance(_students[index]['uid'], 'Cryptography'),
-                  // ),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.only(
+                  bottom: 10.0,
+                ),
+                child: Text(
+                  now,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "Choose Section",
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.blue.shade200,
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(26),
+                              color: _sectionA
+                                  ? Colors.blue.shade50
+                                  : Colors.white,
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _sectionA = !_sectionA;
+                                });
+                                filter('a');
+                              },
+                              child: Text(
+                                "A",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 12),
+                        Container(
+                          padding: EdgeInsets.all(3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.pink.shade200,
+                          ),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 8),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(26),
+                              color: _sectionB
+                                  ? Colors.pink.shade50
+                                  : Colors.white,
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  _sectionB = !_sectionB;
+                                });
+                                filter('b');
+                              },
+                              child: Text(
+                                "B",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                padding: EdgeInsets.only(top: 12),
+                height: 500,
+                child: ListView.builder(
+                  itemCount: _sectionA || _sectionB
+                      ? _filteredStudents.length
+                      : _students.length,
+                  itemBuilder: (ctx, index) => ListTile(
+                    dense: true,
+                    leading: Text(
+                      _sectionA || _sectionB
+                          ? _filteredStudents[index]['rollno']
+                          : _students[index]['rollno'],
+                      textAlign: TextAlign.center,
+                    ),
+                    title: Text(
+                      _sectionA || _sectionB
+                          ? _filteredStudents[index]['name']
+                          : _students[index]['name'],
+                      style: TextStyle(fontSize: 18),
+                    ),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        FlatButton(
+                          visualDensity: VisualDensity.compact,
+                          onPressed: () {
+                            _setAttendance(
+                              _students[index]['uid'],
+                              subjectName,
+                            );
+                            // setState(() {
+                            //   _students[index]['present'] == true;
+                            // });
+                          },
+                          child: Text(
+                            "P",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: () {
+                            print("absent");
+                          },
+                          child: Text(
+                            "A",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    // IconButton(
+                    //   icon: Icon(Icons.assignment_turned_in_outlined),
+                    //   onPressed: () => _setAttendance(_students[index]['uid'], 'Cryptography'),
+                    // ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
