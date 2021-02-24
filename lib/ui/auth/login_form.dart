@@ -63,11 +63,13 @@ class _LoginFormState extends State<LoginForm> {
                 'section': student['section'],
                 'rollno': student['rollno'],
                 'email': student['email'],
+                'uid':authResult.user.uid,
               },
             );
             await FirebaseFirestore.instance
                 .collection('students/${authResult.user.uid}/attendance')
-                .add({'totalDays': 0});
+                .doc("total")
+                .set({'totalDays': 0});
           }
         } else {
           if (isTeacher) {
