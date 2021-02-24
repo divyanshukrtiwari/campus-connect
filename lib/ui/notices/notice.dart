@@ -8,6 +8,7 @@ class Notice extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: NestedScrollView(
         floatHeaderSlivers: true,
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

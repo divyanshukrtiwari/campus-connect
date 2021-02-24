@@ -9,6 +9,7 @@ class TakeAttendance extends StatefulWidget {
 }
 
 class _TakeAttendanceState extends State<TakeAttendance> {
+
   List _students = [];
 
   List _filteredStudents = [];
@@ -80,7 +81,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
             Padding(
@@ -161,6 +162,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
               padding: EdgeInsets.only(top: 12),
               height: 500,
               child: ListView.builder(
+
                 itemCount: _sectionA || _sectionB
                     ? _filteredStudents.length
                     : _students.length,
@@ -178,10 +180,44 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                         : _students[index]['name'],
                     style: TextStyle(fontSize: 18),
                   ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.assignment_turned_in_outlined),
-                    onPressed: () => _setAttendance(_students[index]['uid'], 'Cryptography'),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FlatButton(
+                        visualDensity: VisualDensity.compact,
+                        onPressed: (){
+                          _setAttendance(_students[index]['uid'], 'Cryptography');
+                          // setState(() {
+                          //   _students[index]['present'] == true;
+                          // });
+
+                        },
+                        child: Text(
+                          "P",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                      FlatButton(
+                        onPressed: (){
+                          print("absent");
+                        },
+                        child: Text(
+                          "A",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
+                  // IconButton(
+                  //   icon: Icon(Icons.assignment_turned_in_outlined),
+                  //   onPressed: () => _setAttendance(_students[index]['uid'], 'Cryptography'),
+                  // ),
                 ),
               ),
             ),
