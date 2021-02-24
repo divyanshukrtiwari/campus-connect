@@ -24,7 +24,10 @@ class SubClass extends StatelessWidget {
           style: TextStyle(color: Colors.black.withOpacity(0.65), fontSize: 26),
         ),
       ),
-      drawer: SubClassDrawer(),
+      drawer: SubClassDrawer(
+        subject: data['subject'].toString(),
+        subjectId: data['subjectId'],
+      ),
       body: Container(
         child: Column(
           children: [

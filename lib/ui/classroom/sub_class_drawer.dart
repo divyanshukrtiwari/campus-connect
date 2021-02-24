@@ -5,6 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:my_class/ui/classroom/take_attendance.dart';
 
 class SubClassDrawer extends StatefulWidget {
+  final subject;
+  final subjectId;
+
+  const SubClassDrawer({Key key, this.subject, this.subjectId})
+      : super(key: key);
+
   @override
   _SubClassDrawerState createState() => _SubClassDrawerState();
 }
@@ -12,19 +18,18 @@ class SubClassDrawer extends StatefulWidget {
 class _SubClassDrawerState extends State<SubClassDrawer> {
   bool _teacher = false;
 
-  void _isteacher() async{
+  void _isteacher() async {
     final user = FirebaseAuth.instance.currentUser;
     final teacherData = await FirebaseFirestore.instance
         .collection('teachers')
         .doc(user.uid)
         .get();
 
-
-    if(teacherData.exists){
+    if (teacherData.exists) {
       setState(() {
         _teacher = true;
       });
-    }else{
+    } else {
       setState(() {
         _teacher = false;
       });
@@ -99,15 +104,18 @@ class _SubClassDrawerState extends State<SubClassDrawer> {
                   const EdgeInsets.symmetric(horizontal: 14.0, vertical: 18.0),
               child: InkWell(
                 child: Text(
-                 "Take Attendance",
+                  "Take Attendance",
                   style: TextStyle(fontSize: 18),
                 ),
-                onTap:(){
-                  Navigator.of(context).pushNamed(TakeAttendance.routeName);
+                onTap: () {
+                  Navigator.of(context)
+                      .pushNamed(TakeAttendance.routeName, arguments: {
+                    'subjectName': widget.subject,
+                    'subjectId': widget.subjectId,
+                  });
                 },
               ),
             ),
-
         ],
       ),
     );

@@ -9,7 +9,6 @@ class TakeAttendance extends StatefulWidget {
 }
 
 class _TakeAttendanceState extends State<TakeAttendance> {
-
   List _students = [];
 
   List _filteredStudents = [];
@@ -69,6 +68,10 @@ class _TakeAttendanceState extends State<TakeAttendance> {
 
   @override
   Widget build(BuildContext context) {
+    var data = ModalRoute.of(context).settings.arguments as Map;
+    String subjectName = data['subjectName'].toString();
+    print(data);
+    //String subjectId = data['subjectId'];
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
@@ -162,7 +165,6 @@ class _TakeAttendanceState extends State<TakeAttendance> {
               padding: EdgeInsets.only(top: 12),
               height: 500,
               child: ListView.builder(
-
                 itemCount: _sectionA || _sectionB
                     ? _filteredStudents.length
                     : _students.length,
@@ -185,12 +187,14 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                     children: [
                       FlatButton(
                         visualDensity: VisualDensity.compact,
-                        onPressed: (){
-                          _setAttendance(_students[index]['uid'], 'Cryptography');
+                        onPressed: () {
+                          _setAttendance(
+                            _students[index]['uid'],
+                            subjectName,
+                          );
                           // setState(() {
                           //   _students[index]['present'] == true;
                           // });
-
                         },
                         child: Text(
                           "P",
@@ -201,7 +205,7 @@ class _TakeAttendanceState extends State<TakeAttendance> {
                         ),
                       ),
                       FlatButton(
-                        onPressed: (){
+                        onPressed: () {
                           print("absent");
                         },
                         child: Text(
