@@ -69,8 +69,8 @@ class _DashboardDrawerState extends State<DashboardDrawer> {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.indigo.shade100,
-                  radius: 35,
+                  child: Icon(Icons.account_circle),
+                  radius: 50,
                 ),
                 SizedBox(width: 16),
                 Expanded(
