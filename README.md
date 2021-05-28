@@ -49,7 +49,7 @@ An easy to use online learning platform with features like classrooms, categoriz
 
 ## Tech Stack
 
-**Client:** FLutter SDK
+**Client:** Flutter SDK
 
 **Server:** Firebase
 
