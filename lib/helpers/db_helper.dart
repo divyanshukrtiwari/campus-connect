@@ -1,15 +1,21 @@
 import 'package:sqflite/sqflite.dart' as sql;
+import 'dart:io';
+
 import 'package:path/path.dart' as path;
+import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DBHelper {
   static Future<sql.Database> database() async {
-    final dbPath = await sql.getDatabasesPath();
-    return sql.openDatabase(
-      path.join(dbPath, 'campus-connect.db'),
+    Directory documentsDirectory = await getExternalStorageDirectory();
+    String path = join(documentsDirectory.path, "campus-connect.db");
+    return openDatabase(
+      path,
       onCreate: (db, version) => db.execute(
-        'CREATE TABLE app_assets(id TEXT PRIMARY KEY, title TEXT, image TEXT)',
+        'CREATE TABLE ChatMessages(id TEXT PRIMARY KEY, userId TEXT, username TEXT, message TEXT, subjectName TEXT)',
       ),
-      version: 1,
+      version: 2,
     );
   }
 

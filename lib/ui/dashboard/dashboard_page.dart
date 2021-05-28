@@ -6,6 +6,7 @@ import 'package:my_class/ui/attendance/attendance.dart';
 import 'package:my_class/ui/classroom/classroom.dart';
 import 'package:my_class/ui/notices/notices_tab_home.dart';
 import 'package:my_class/ui/quiz/quiz_landing.dart';
+import 'package:my_class/helpers/db_helper.dart';
 
 import 'dashboard_drawer.dart';
 

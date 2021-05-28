@@ -31,7 +31,7 @@ class SubClass extends StatelessWidget {
       body: Container(
         child: Column(
           children: [
-            Expanded(child: SubClassPost(subjectId)),
+            Expanded(child: SubClassPost(subjectId, title)),
             SubClassNewPost(subjectId),
           ],
         ),

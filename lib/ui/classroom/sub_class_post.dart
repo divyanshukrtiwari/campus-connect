@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:my_class/helpers/db_helper.dart';
+import 'package:path/path.dart' as path;
+import 'package:sqflite/sqflite.dart' as sql;
+
 
 class SubClassPost extends StatelessWidget {
-  SubClassPost(this.subjectId);
+  SubClassPost(this.subjectId, this.subject);
   final subjectId;
+  final subject;
+
   @override
   Widget build(BuildContext context) {
+    final subject_name = subject.toString().replaceAll(" ", "");
+
     return StreamBuilder(
       stream: FirebaseFirestore.instance
           .collection(
@@ -23,6 +31,13 @@ class SubClassPost extends StatelessWidget {
           padding: EdgeInsets.all(12),
           itemCount: doc.length,
           itemBuilder: (context, index) {
+            DBHelper.insert("ChatMessages", {
+              'id':doc[index]['timeStamp'].toString(),
+              'userId':doc[index]['userId'].toString(),
+              'username':doc[index]['username'].toString(),
+              'message':doc[index]['text'].toString(),
+              'subjectName': subject_name,
+            });
             return Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.start,
