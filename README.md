@@ -63,4 +63,4 @@ An easy to use online learning platform with features like classrooms, categoriz
   
 ## License
 
-[GNU GPLv3](https://choosealicense.com/licenses/mit/)
+[GNU GPLv3](./LICENSE)
